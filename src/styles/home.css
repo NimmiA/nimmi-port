@@ -1,0 +1,351 @@
+:root {
+  --primary-black: #000000;
+  --primary-white: #ffffff;
+  --gray-light: #f8f8f8;
+  --gray-dark: #333333;
+  --dot-pattern: #1a1a1a;
+}
+
+/* Global styles */
+.home-section {
+  background-color: var(--primary-white);
+  color: var(--primary-black);
+  min-height: 100vh;
+  padding: 0;
+  margin: 0;
+}
+
+/* Update navigation to match the reference */
+.home-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 2rem;
+  background: var(--primary-white);
+  z-index: 100;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Add logo styles */
+.nav-logo {
+  font-size: 1.2rem;
+  font-weight: 600;
+  letter-spacing: 2px;
+  color: var(--primary-black);
+}
+
+/* Update navigation list */
+.home-nav ul {
+  display: flex;
+  gap: 3rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* Update navigation links */
+.nav-link {
+  background: none;
+  border: none;
+  font-family: 'Geneva', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 400;
+  color: var(--primary-black);
+  opacity: 0.6;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  padding: 0;
+  position: relative;
+  text-transform: uppercase;
+}
+
+.nav-link span {
+  position: relative;
+  display: inline-block;
+}
+
+/* Add underline effect */
+.nav-link span::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 1px;
+  bottom: -4px;
+  left: 0;
+  background-color: var(--primary-black);
+  transition: width 0.3s ease;
+}
+
+.nav-link:hover span::after,
+.nav-link.active span::after {
+  width: 100%;
+}
+
+.nav-link.active,
+.nav-link:hover {
+  opacity: 1;
+}
+
+/* Hide the chevron icon by default */
+.nav-link svg {
+  display: none;
+}
+
+/* Add responsive styles for navigation */
+@media (max-width: 768px) {
+  .home-nav {
+    padding: 1.5rem;
+  }
+
+  .home-nav ul {
+    gap: 2rem;
+  }
+
+  .nav-link {
+    font-size: 0.75rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .home-nav ul {
+    gap: 1rem;
+  }
+
+  .nav-link {
+    font-size: 0.7rem;
+  }
+}
+
+/* Hero section updates */
+.hero-section {
+  min-height: 100vh;
+  padding-top: 80px;
+  display: flex;
+  align-items: center;
+  background-color: var(--primary-white);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Add this new style for the background pattern */
+.hero-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    radial-gradient(
+      circle,
+      var(--dot-pattern) 1px,
+      transparent 1px
+    );
+  background-size: 30px 30px;
+  opacity: 0.1;
+  z-index: 1;
+}
+
+/* Update content wrapper to stay above the pattern */
+.content-wrapper {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 4rem;
+}
+
+.main-title {
+  font-size: 5rem;
+  font-weight: 300;
+  line-height: 1;
+  margin: 0;
+  letter-spacing: -1px;
+}
+
+.main-title.highlight {
+  font-size: 7rem;
+  font-weight: 600;
+  margin-top: -1rem;
+}
+
+.role-tag {
+  display: inline-block;
+  background-color: var(--primary-black);
+  color: var(--primary-white);
+  padding: 0.6rem 1.2rem;
+  font-size: 0.8rem;
+  letter-spacing: 3px;
+  margin-top: 2rem;
+}
+
+/* Image styles update */
+.image-wrapper {
+  position: relative;
+  margin-left: 2rem;
+}
+
+.profile-image {
+  position: relative;
+  z-index: 2;
+}
+
+.profile-image img {
+  width: 100%;
+  height: auto;
+  max-width: 500px;
+  filter: grayscale(100%) contrast(1.2);
+  border: none;
+}
+
+.dot-pattern {
+  position: absolute;
+  top: -2rem;
+  right: -2rem;
+  width: 100%;
+  height: 100%;
+  background-image: radial-gradient(var(--dot-pattern) 1px, transparent 1px);
+  background-size: 15px 15px;
+  z-index: 1;
+}
+
+/* Section styles update */
+.section-header {
+  margin-bottom: 5rem;
+  padding-top: 8rem;
+}
+
+.section-number {
+  font-size: 0.8rem;
+  color: var(--gray-dark);
+  margin-bottom: 1rem;
+  letter-spacing: 3px;
+}
+
+.section-title {
+  font-size: 4rem;
+  font-weight: 500;
+  margin: 0;
+  letter-spacing: -1px;
+}
+
+/* Work section updates */
+.work-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 3rem;
+  padding: 0 4rem;
+}
+
+.work-card {
+  position: relative;
+  overflow: hidden;
+  background: var(--primary-white);
+}
+
+.work-image img {
+  width: 100%;
+  height: 400px;
+  object-fit: cover;
+  filter: grayscale(100%);
+  transition: all 0.5s ease;
+}
+
+.work-info {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 2rem;
+  background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
+  transform: translateY(100%);
+  transition: transform 0.5s ease;
+}
+
+.work-card:hover .work-info {
+  transform: translateY(0);
+}
+
+/* Contact section updates */
+.contact-section {
+  padding: 8rem 4rem;
+}
+
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.contact-form input,
+.contact-form textarea {
+  width: 100%;
+  padding: 1rem;
+  margin-bottom: 1.5rem;
+  border: 1px solid var(--gray-dark);
+  background: transparent;
+  color: var(--primary-black);
+  font-size: 0.9rem;
+  letter-spacing: 1px;
+}
+
+.contact-btn {
+  background: var(--primary-black);
+  color: var(--primary-white);
+  border: none;
+  padding: 1rem 2.5rem;
+  font-size: 0.8rem;
+  letter-spacing: 3px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+/* Responsive updates */
+@media (max-width: 1024px) {
+  .content-wrapper {
+    grid-template-columns: 1fr;
+    gap: 4rem;
+    padding: 0 2rem;
+  }
+
+  .main-title {
+    font-size: 4rem;
+  }
+
+  .main-title.highlight {
+    font-size: 5rem;
+  }
+
+  .work-grid {
+    grid-template-columns: 1fr;
+    padding: 0 2rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .home-nav {
+    padding: 1rem;
+  }
+
+  .home-nav ul {
+    gap: 1rem;
+  }
+
+  .section-title {
+    font-size: 3rem;
+  }
+
+  .contact-grid {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+    padding: 0 2rem;
+  }
+} 

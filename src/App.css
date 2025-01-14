@@ -1,0 +1,530 @@
+/* App.css */
+
+/* Theme Variables - Yellow & Black color scheme */
+:root {
+  /* Primary Colors */
+  --bg-primary: #ffd62c;          /* Vibrant yellow background */
+  --bg-secondary: #ffe55c;        /* Lighter yellow */
+  --text-primary: #000000;        /* Pure black text */
+  --text-secondary: #1a1a1a;      /* Soft black text */
+  --accent-color: #000000;        /* Black accent */
+  --accent-hover: #333333;        /* Dark grey for hover */
+  
+  /* Supporting Colors */
+  --card-bg: #fff7b5;            /* Very light yellow */
+  --border-color: #000000;       /* Black border */
+  --shadow-color: rgba(0, 0, 0, 0.15);  /* Subtle black shadow */
+  --hover-color: rgba(0, 0, 0, 0.05);   /* Light hover effect */
+  
+  /* Gradients */
+  --gradient-primary: linear-gradient(45deg, #000000, #333333);
+  --gradient-hover: linear-gradient(45deg, #333333, #000000);
+}
+
+/* Dark mode colors - Inverted scheme */
+[data-theme='dark'] {
+  --bg-primary: #000000;          /* Black background */
+  --bg-secondary: #1a1a1a;        /* Soft black */
+  --text-primary: #ffd62c;        /* Yellow text */
+  --text-secondary: #ffe55c;      /* Light yellow */
+  --accent-color: #ffd62c;        /* Yellow accent */
+  --accent-hover: #ffe55c;        /* Light yellow hover */
+  --card-bg: #262626;            /* Dark grey cards */
+  --border-color: #ffd62c;       /* Yellow border */
+  --shadow-color: rgba(255, 214, 44, 0.15);
+  --hover-color: rgba(255, 214, 44, 0.05);
+}
+
+/* Global Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  transition: all 0.3s ease;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  line-height: 1.7;
+}
+
+.app-container {
+  min-height: 100vh;
+  background-color: var(--bg-primary);
+}
+
+/* Typography */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  color: var(--text-primary);
+  letter-spacing: 0.5px;
+  font-weight: 500;
+}
+
+.main-title {
+  font-size: 3.5rem;
+  font-weight: 500;
+}
+
+.section-title {
+  font-size: 2.5rem;
+  font-weight: 500;
+}
+
+p {
+  color: var(--text-secondary);
+  font-weight: 300;
+}
+
+/* Links */
+a {
+  color: var(--accent-color);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+a:hover {
+  color: var(--text-primary);
+}
+
+/* Buttons */
+button, .primary-btn, .secondary-btn {
+  background-color: var(--card-bg);
+  color: var(--text-primary);
+  border: 1px solid var(--border-color);
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-weight: 400;
+  letter-spacing: 1px;
+  text-transform: none;
+}
+
+button:hover, .primary-btn:hover, .secondary-btn:hover {
+  background-color: var(--hover-color);
+  border-color: var(--accent-color);
+}
+
+/* Cards */
+.card {
+  background-color: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 1rem;
+  box-shadow: 0 4px 12px var(--shadow-color);
+}
+
+/* Inputs */
+input, textarea, select {
+  background-color: var(--card-bg);
+  color: var(--text-primary);
+  border: 1px solid var(--border-color);
+  padding: 0.5rem;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+  font-weight: 300;
+}
+
+input:focus, textarea:focus, select:focus {
+  outline: none;
+  border-color: var(--accent-color);
+  box-shadow: 0 0 0 2px var(--shadow-color);
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-secondary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border-color);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--text-secondary);
+}
+
+/* Gradient Text */
+.gradient-text {
+  background: linear-gradient(45deg, var(--text-primary), var(--text-secondary));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  opacity: 0.9;
+}
+
+/* Section Containers */
+.section-container {
+  padding: 4rem 2rem;
+  margin-top: 60px;
+  min-height: calc(100vh - 60px);
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 0.95; }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+  to {
+    opacity: 0.95;
+    transform: translateY(0);
+  }
+}
+
+.fade-in {
+  animation: fadeIn 0.8s ease forwards;
+}
+
+.slide-up {
+  animation: slideUp 0.8s ease forwards;
+}
+
+/* Media Queries */
+@media (max-width: 768px) {
+  .section-container {
+    padding: 3rem 1rem;
+  }
+}
+
+/* Code Blocks */
+pre, code {
+  background-color: var(--card-bg);
+  color: var(--text-primary);
+  padding: 0.2rem 0.4rem;
+  border-radius: 4px;
+  font-family: 'SF Mono', 'Fira Code', monospace;
+}
+
+/* Lists */
+ul, ol {
+  color: var(--text-primary);
+  padding-left: 1.5rem;
+}
+
+/* Dividers */
+hr {
+  border: none;
+  border-top: 1px solid var(--border-color);
+  margin: 2rem 0;
+}
+
+/* Tables */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1rem 0;
+}
+
+th, td {
+  padding: 0.75rem;
+  border: 1px solid var(--border-color);
+  color: var(--text-primary);
+}
+
+th {
+  background-color: var(--bg-secondary);
+}
+
+/* Form Elements */
+label {
+  color: var(--text-primary);
+  margin-bottom: 0.5rem;
+  display: block;
+}
+
+/* Tooltips */
+[data-tooltip] {
+  position: relative;
+}
+
+[data-tooltip]:after {
+  content: attr(data-tooltip);
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: var(--card-bg);
+  color: var(--text-primary);
+  padding: 0.5rem;
+  border-radius: 4px;
+  font-size: 0.875rem;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+[data-tooltip]:hover:after {
+  opacity: 1;
+}
+
+/* Add these dark mode specific styles */
+.dark-mode {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+}
+
+/* Keep your existing styles but add these dark mode specific overrides */
+.dark-mode .card {
+  background-color: var(--card-bg);
+  border-color: var(--border-color);
+}
+
+.dark-mode button {
+  background-color: var(--card-bg);
+  color: var(--text-primary);
+  border-color: var(--border-color);
+}
+
+.dark-mode button:hover {
+  background-color: var(--hover-color);
+  border-color: var(--accent-color);
+}
+
+.dark-mode input,
+.dark-mode textarea,
+.dark-mode select {
+  background-color: var(--card-bg);
+  color: var(--text-primary);
+  border-color: var(--border-color);
+}
+
+.dark-mode input:focus,
+.dark-mode textarea:focus,
+.dark-mode select:focus {
+  border-color: var(--accent-color);
+}
+
+/* Add these styles for better dark mode visibility */
+.dark-mode ::selection {
+  background-color: var(--accent-color);
+  color: var(--bg-primary);
+}
+
+.dark-mode ::-webkit-scrollbar-track {
+  background: var(--bg-secondary);
+}
+
+.dark-mode ::-webkit-scrollbar-thumb {
+  background: var(--accent-color);
+}
+
+.dark-mode ::-webkit-scrollbar-thumb:hover {
+  background: var(--text-secondary);
+}
+
+/* Add these animation styles */
+.animate-title {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.animate-title span {
+  display: inline-block;
+  opacity: 0;
+  animation: bounceIn 0.5s ease forwards;
+}
+
+.animate-title span.space {
+  width: 2rem;
+}
+
+@keyframes bounceIn {
+  0% {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  60% {
+    opacity: 1;
+    transform: translateY(10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Add smooth transitions for all color changes */
+* {
+  transition: color 0.4s ease, background-color 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease;
+}
+
+/* Update component-specific styles */
+.navbar {
+  background: var(--bg-secondary);
+  border-bottom: 2px solid var(--accent-color);
+}
+
+.resume-btn {
+  background: var(--accent-color);
+  color: var(--bg-primary);
+}
+
+.resume-btn:hover {
+  background: var(--accent-hover);
+}
+
+.nav-text:hover::after,
+.nav-text.active::after {
+  background: var(--gradient-primary);
+}
+
+.primary-btn {
+  background: var(--accent-color);
+  color: var(--bg-primary);
+  border: none;
+}
+
+.primary-btn:hover {
+  background: var(--accent-hover);
+}
+
+.secondary-btn {
+  border: 2px solid var(--accent-color);
+  color: var(--accent-color);
+  background: transparent;
+}
+
+.secondary-btn:hover {
+  background: var(--accent-color);
+  color: var(--bg-primary);
+}
+
+/* Card and section styling */
+.card, .skill-category-card, .project-card {
+  background: var(--card-bg);
+  border: 2px solid var(--accent-color);
+  box-shadow: 8px 8px 0 var(--shadow-color);
+}
+
+/* Tag styling */
+.tech-tag, .skill-tag {
+  background: var(--bg-secondary);
+  color: var(--text-primary);
+  border: 1px solid var(--accent-color);
+}
+
+.tech-tag:hover, .skill-tag:hover {
+  background: var(--accent-color);
+  color: var(--bg-primary);
+}
+
+/* Animation keyframes with new colors */
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.4);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(0, 0, 0, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
+  }
+}
+
+/* Form elements */
+input, textarea, select {
+  background: var(--bg-secondary);
+  border: 2px solid var(--accent-color);
+  color: var(--text-primary);
+}
+
+input:focus, textarea:focus, select:focus {
+  border-color: var(--accent-color);
+  box-shadow: 4px 4px 0 var(--shadow-color);
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar-thumb {
+  background: var(--accent-color);
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-secondary);
+}
+
+/* Selection styling */
+::selection {
+  background: var(--accent-color);
+  color: var(--bg-primary);
+}
+
+/* Image effects */
+.profile-image img {
+  border: 4px solid var(--accent-color);
+  box-shadow: 
+    0 10px 25px var(--shadow-color),
+    0 0 0 8px var(--bg-secondary);
+}
+
+.image-glow {
+  background: radial-gradient(
+    circle,
+    rgba(0, 0, 0, 0.2) 0%,
+    rgba(0, 0, 0, 0.1) 40%,
+    transparent 70%
+  );
+}
+
+/* Gradient text effect */
+.gradient-text {
+  background: var(--gradient-primary);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Add bold geometric shapes */
+.geometric-shape {
+  position: absolute;
+  background: var(--accent-color);
+  opacity: 0.1;
+  z-index: 0;
+}
+
+.shape-1 {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  top: 10%;
+  left: 5%;
+}
+
+.shape-2 {
+  width: 150px;
+  height: 150px;
+  transform: rotate(45deg);
+  bottom: 15%;
+  right: 10%;
+}
+
+/* Add modern brutalist touches */
+.brutalist-border {
+  border: 4px solid var(--accent-color);
+  box-shadow: 8px 8px 0 var(--shadow-color);
+}
+
+.brutalist-text {
+  font-weight: 700;
+  letter-spacing: -1px;
+  text-transform: uppercase;
+}
+
+

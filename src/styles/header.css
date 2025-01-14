@@ -1,0 +1,123 @@
+/* Global Styles */
+body {
+  margin: 0;
+  font-family: Chalkboard;
+  line-height: 1.6;
+  background-color: #e0d5d5;
+}
+
+/* Header */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 40px;
+  background-color: #ddd8d8;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.header .logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #333;
+}
+
+.header .nav ul {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+}
+
+.header .nav ul li a {
+  text-decoration: none;
+  color: #666;
+  font-weight: 500;
+}
+
+.header .buy-now {
+  background-color: #ff5a5f;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+/* Hero Section */
+.hero {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 50px 0;
+  background-color: #fff;
+}
+
+.hero-container {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+}
+
+.hero-text h1 {
+  font-size: 2.5rem;
+  color: #333;
+}
+
+.hero-text .highlight {
+  color: #ff5a5f;
+}
+
+.hero-text p {
+  color: #666;
+  margin: 20px 0;
+}
+
+.download-btn {
+  background-color: #ff5a5f;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.hero-image img {
+  width: 400px;
+  border-radius: 10px;
+}
+
+/* About Me Section */
+.about-me {
+  padding: 50px 0;
+  background-color: #f9f9f9;
+}
+
+.about-content {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+  flex-wrap: wrap;
+}
+
+.about-image img {
+  width: 200px;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.about-details {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.detail h3 {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #333;
+}
+
+.detail p {
+  font-size: 1rem;
+  color: #666;
+}

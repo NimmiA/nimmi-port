@@ -1,0 +1,71 @@
+/* About page styles */
+.about-section {
+  background-color: var(--primary-white);
+  min-height: 100vh;
+  padding: 8rem 4rem 4rem;
+}
+
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.about-text {
+  position: relative;
+}
+
+.lead-text {
+  font-size: 2rem;
+  line-height: 1.4;
+  margin-bottom: 2rem;
+  font-weight: 300;
+}
+
+.about-description {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: var(--gray-dark);
+}
+
+.skills-overview {
+  position: relative;
+}
+
+.skill-group {
+  margin-bottom: 3rem;
+}
+
+.skill-group h3 {
+  font-size: 1.2rem;
+  font-weight: 500;
+  margin-bottom: 1.5rem;
+  letter-spacing: 1px;
+}
+
+.skill-group ul {
+  list-style: none;
+  padding: 0;
+}
+
+.skill-group li {
+  padding: 0.5rem 0;
+  font-size: 1rem;
+  color: var(--gray-dark);
+  position: relative;
+  padding-left: 1.5rem;
+}
+
+.skill-group li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: 6px;
+  height: 6px;
+  background: var(--primary-black);
+  border-radius: 50%;
+  transform: translateY(-50%);
+} 

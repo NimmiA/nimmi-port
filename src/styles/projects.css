@@ -1,0 +1,76 @@
+/* Projects page styles */
+.projects-section {
+  background-color: var(--primary-white);
+  min-height: 100vh;
+  padding: 8rem 4rem 4rem;
+}
+
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 4rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.project-card {
+  position: relative;
+  overflow: hidden;
+  background: var(--primary-white);
+  border: 1px solid var(--gray-light);
+}
+
+.project-image {
+  position: relative;
+  overflow: hidden;
+}
+
+.project-image img {
+  width: 100%;
+  height: 400px;
+  object-fit: cover;
+  filter: grayscale(100%);
+  transition: all 0.5s ease;
+}
+
+.project-content {
+  padding: 2rem;
+}
+
+.project-title {
+  font-size: 1.5rem;
+  font-weight: 500;
+  margin-bottom: 1rem;
+}
+
+.project-description {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--gray-dark);
+  margin-bottom: 1.5rem;
+}
+
+.project-tags {
+  display: flex;
+  gap: 0.8rem;
+  flex-wrap: wrap;
+  margin-bottom: 1.5rem;
+}
+
+.project-tag {
+  padding: 0.4rem 1rem;
+  background: var(--gray-light);
+  font-size: 0.8rem;
+  border-radius: 2px;
+}
+
+.project-link {
+  display: inline-block;
+  padding: 0.8rem 1.5rem;
+  background: var(--primary-black);
+  color: var(--primary-white);
+  text-decoration: none;
+  font-size: 0.9rem;
+  letter-spacing: 1px;
+  transition: all 0.3s ease;
+} 

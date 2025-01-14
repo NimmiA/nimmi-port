@@ -1,0 +1,189 @@
+.experience-section {
+  padding: 4rem 0;
+  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+  min-height: 100vh;
+}
+
+.experience-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.section-title {
+  text-align: center;
+  font-size: 2.5rem;
+  margin-bottom: 3rem;
+  background: linear-gradient(45deg, #ff6b6b, #845ec2);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.timeline {
+  position: relative;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.timeline::after {
+  content: '';
+  position: absolute;
+  width: 2px;
+  background: #845ec2;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.timeline-item {
+  padding: 10px 40px;
+  position: relative;
+  width: 50%;
+  margin-bottom: 2rem;
+}
+
+.timeline-item::after {
+  content: '';
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background: linear-gradient(45deg, #ff6b6b, #845ec2);
+  border-radius: 50%;
+  top: 20px;
+}
+
+.timeline-item.left {
+  left: 0;
+}
+
+.timeline-item.right {
+  left: 50%;
+}
+
+.timeline-item.left::after {
+  right: -10px;
+}
+
+.timeline-item.right::after {
+  left: -10px;
+}
+
+.timeline-content {
+  padding: 2rem;
+  background: white;
+  border-radius: 15px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.timeline-content:hover {
+  transform: translateY(-5px);
+}
+
+.experience-header {
+  margin-bottom: 1.5rem;
+}
+
+.experience-title {
+  font-size: 1.5rem;
+  color: #845ec2;
+  margin-bottom: 0.5rem;
+}
+
+.company-info {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+}
+
+.company-name {
+  font-weight: 500;
+  color: #333;
+}
+
+.location {
+  color: #666;
+}
+
+.period {
+  display: block;
+  color: #666;
+  font-size: 0.9rem;
+}
+
+.responsibilities {
+  list-style-type: none;
+  padding-left: 0;
+  margin-bottom: 1.5rem;
+}
+
+.responsibilities li {
+  position: relative;
+  padding-left: 1.5rem;
+  margin-bottom: 0.5rem;
+  color: #555;
+  line-height: 1.6;
+}
+
+.responsibilities li::before {
+  content: '•';
+  color: #845ec2;
+  position: absolute;
+  left: 0;
+  font-size: 1.2rem;
+}
+
+.projects-section {
+  border-top: 1px solid #eee;
+  padding-top: 1.5rem;
+}
+
+.projects-section h4 {
+  color: #845ec2;
+  margin-bottom: 1rem;
+  font-size: 1.2rem;
+}
+
+.project-item {
+  margin-bottom: 1.5rem;
+}
+
+.project-item h5 {
+  color: #333;
+  margin-bottom: 0.5rem;
+  font-size: 1.1rem;
+}
+
+.project-item p {
+  color: #666;
+  line-height: 1.6;
+}
+
+@media (max-width: 768px) {
+  .timeline::after {
+    left: 31px;
+  }
+
+  .timeline-item {
+    width: 100%;
+    padding-left: 70px;
+    padding-right: 25px;
+  }
+
+  .timeline-item.right {
+    left: 0;
+  }
+
+  .timeline-item::after {
+    left: 21px;
+  }
+
+  .section-title {
+    font-size: 2rem;
+  }
+
+  .company-info {
+    flex-direction: column;
+  }
+} 
