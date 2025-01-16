@@ -1,71 +1,231 @@
 /* About page styles */
+:root {
+  --primary-black: #000000;
+  --primary-white: #ffffff;
+  --gray-light: #f8f8f8;
+  --gray-dark: #333333;
+  --dot-pattern: #f9f9f9;
+}
+
 .about-section {
   background-color: var(--primary-white);
   min-height: 100vh;
-  padding: 8rem 4rem 4rem;
+  padding: 8rem 4rem;
+  position: relative;
+}
+
+/* Add dot pattern background */
+.about-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    radial-gradient(
+      circle,
+      var(--dot-pattern) 1px,
+      transparent 1px
+    );
+  background-size: 30px 30px;
+  opacity: 0.1;
+  z-index: 1;
+}
+
+.about-content {
+  position: relative;
+  z-index: 2;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.section-header {
+  margin-bottom: 5rem;
+}
+
+.section-number {
+  font-size: 0.8rem;
+  color: var(--gray-dark);
+  margin-bottom: 1rem;
+  letter-spacing: 3px;
+  display: block;
+}
+
+.section-title {
+  font-size: 4rem;
+  font-weight: 500;
+  margin: 0;
+  letter-spacing: -1px;
 }
 
 .about-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 6rem;
-  max-width: 1200px;
-  margin: 0 auto;
+  align-items: start;
 }
 
-.about-text {
+.profile-container {
   position: relative;
+  max-width: 400px;
 }
 
-.lead-text {
-  font-size: 2rem;
-  line-height: 1.4;
+.profile-image {
+  position: relative;
+  overflow: hidden;
+}
+
+.profile-image img {
+  width: 100%;
+  height: auto;
+  filter: grayscale(100%) contrast(1.1);
+  transition: all 0.5s ease;
+}
+
+.image-frame {
+  position: absolute;
+  top: -10px;
+  left: -10px;
+  right: -10px;
+  bottom: -10px;
+  border: 1px solid var(--primary-black);
+  z-index: -1;
+}
+
+.about-subtitle {
+  font-size: 1.8rem;
+  font-weight: 500;
   margin-bottom: 2rem;
-  font-weight: 300;
+  color: var(--primary-black);
 }
 
 .about-description {
   font-size: 1.1rem;
   line-height: 1.8;
   color: var(--gray-dark);
-}
-
-.skills-overview {
-  position: relative;
-}
-
-.skill-group {
-  margin-bottom: 3rem;
-}
-
-.skill-group h3 {
-  font-size: 1.2rem;
-  font-weight: 500;
   margin-bottom: 1.5rem;
-  letter-spacing: 1px;
 }
 
-.skill-group ul {
-  list-style: none;
-  padding: 0;
+.specialization-list {
+  margin-top: 4rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
 }
 
-.skill-group li {
-  padding: 0.5rem 0;
-  font-size: 1rem;
-  color: var(--gray-dark);
+.specialization-item {
   position: relative;
-  padding-left: 1.5rem;
+  padding-left: 2rem;
 }
 
-.skill-group li::before {
+.specialization-item::before {
   content: '';
   position: absolute;
   left: 0;
-  top: 50%;
-  width: 6px;
-  height: 6px;
+  top: 8px;
+  width: 8px;
+  height: 8px;
   background: var(--primary-black);
   border-radius: 50%;
-  transform: translateY(-50%);
+}
+
+.specialization-title {
+  display: block;
+  font-size: 1.2rem;
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+  color: var(--primary-black);
+}
+
+.specialization-item p {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--gray-dark);
+}
+
+.connect-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.8rem;
+  margin-top: 3rem;
+  padding: 1rem 2rem;
+  background: var(--primary-black);
+  color: var(--primary-white);
+  text-decoration: none;
+  font-size: 0.9rem;
+  letter-spacing: 1px;
+  transition: all 0.3s ease;
+}
+
+.connect-button:hover {
+  transform: translateX(5px);
+}
+
+.connect-button svg {
+  font-size: 0.8rem;
+  transition: transform 0.3s ease;
+}
+
+.connect-button:hover svg {
+  transform: translateX(3px);
+}
+
+/* Dark mode styles */
+.dark-mode .about-section {
+  background-color: var(--primary-black);
+}
+
+.dark-mode .about-subtitle,
+.dark-mode .specialization-title {
+  color: var(--primary-white);
+}
+
+.dark-mode .about-description,
+.dark-mode .specialization-item p {
+  color: var(--gray-light);
+}
+
+.dark-mode .specialization-item::before {
+  background: var(--primary-white);
+}
+
+.dark-mode .image-frame {
+  border-color: var(--primary-white);
+}
+
+/* Responsive styles */
+@media (max-width: 1024px) {
+  .about-grid {
+    grid-template-columns: 1fr;
+    gap: 4rem;
+  }
+  
+  .profile-container {
+    margin: 0 auto;
+  }
+}
+
+@media (max-width: 768px) {
+  .about-section {
+    padding: 6rem 2rem;
+  }
+
+  .section-title {
+    font-size: 3rem;
+  }
+
+  .about-subtitle {
+    font-size: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .about-section {
+    padding: 4rem 1.5rem;
+  }
+
+  .section-title {
+    font-size: 2.5rem;
+  }
 } 

@@ -1,6 +1,6 @@
 import React from 'react';
 import { useTheme } from '../context/ThemeContext';
-import { FaEnvelope, FaPhone, FaLinkedin, FaGithub } from 'react-icons/fa';
+import { FaEnvelope, FaLinkedin, FaGithub, FaMapMarkerAlt } from 'react-icons/fa';
 import '../styles/contact.css';
 
 const Contact = () => {
@@ -8,40 +8,38 @@ const Contact = () => {
 
   return (
     <section className={`contact-section ${isDarkMode ? 'dark-mode' : ''}`}>
+            <div className="dot-pattern"></div>  {/* Add this line */}
+
       <div className="contact-container">
-        <h1 className="contact-title animate-title">
-          <span>G</span><span>E</span><span>T</span>
-          <span className="space"></span>
-          <span>I</span><span>N</span>
-          <span className="space"></span>
-          <span>T</span><span>O</span><span>U</span><span>C</span><span>H</span>
-        </h1>
-        
+        <div className="section-header fade-in">
+          <span className="section-number">03</span>
+          <h2 className="section-title">GET IN TOUCH</h2>
+        </div>
+
         <div className="contact-content">
           <div className="contact-info">
-            <div className="info-block">
-              <h2 className="info-title">LET'S CONNECT</h2>
-              <p className="info-text">
-                Feel free to reach out for collaborations or just a friendly hello
-              </p>
-              
-              <div className="contact-details">
-                <a href="mailto:your.email@example.com" className="contact-item">
-                  <FaEnvelope className="icon" />
-                  <span>your.email@example.com</span>
-                </a>
-                <a href="tel:+1234567890" className="contact-item">
-                  <FaPhone className="icon" />
-                  <span>+1 234 567 890</span>
-                </a>
-                <a href="https://linkedin.com/in/yourprofile" className="contact-item">
-                  <FaLinkedin className="icon" />
-                  <span>LinkedIn Profile</span>
-                </a>
-                <a href="https://github.com/yourusername" className="contact-item">
-                  <FaGithub className="icon" />
-                  <span>GitHub Profile</span>
-                </a>
+            <h3>Let's Connect</h3>
+            <p className="contact-description">
+              I'm currently looking for new opportunities. Whether you have a question
+              or just want to say hi, I'll get back to you!
+            </p>
+            
+            <div className="contact-links">
+              <a href="mailto:your.email@example.com" className="contact-link">
+                <FaEnvelope />
+                <span>your.email@example.com</span>
+              </a>
+              <a href="https://linkedin.com/in/your-profile" target="_blank" rel="noopener noreferrer" className="contact-link">
+                <FaLinkedin />
+                <span>LinkedIn Profile</span>
+              </a>
+              <a href="https://github.com/your-username" target="_blank" rel="noopener noreferrer" className="contact-link">
+                <FaGithub />
+                <span>GitHub Profile</span>
+              </a>
+              <div className="contact-link">
+                <FaMapMarkerAlt />
+                <span>Toronto, Canada</span>
               </div>
             </div>
           </div>
@@ -49,18 +47,20 @@ const Contact = () => {
           <div className="contact-form-container">
             <form className="contact-form">
               <div className="form-group">
-                <input type="text" placeholder="YOUR NAME" required />
+                <input type="text" placeholder="Your Name" required />
               </div>
               <div className="form-group">
-                <input type="email" placeholder="YOUR EMAIL" required />
+                <input type="email" placeholder="Your Email" required />
               </div>
               <div className="form-group">
-                <input type="text" placeholder="SUBJECT" required />
+                <input type="text" placeholder="Subject" required />
               </div>
               <div className="form-group">
-                <textarea placeholder="YOUR MESSAGE" rows="6" required></textarea>
+                <textarea placeholder="Your Message" rows="6" required></textarea>
               </div>
-              <button type="submit" className="submit-btn">SEND MESSAGE</button>
+              <button type="submit" className="submit-btn">
+                Send Message
+              </button>
             </form>
           </div>
         </div>

@@ -1,189 +1,227 @@
 .experience-section {
-  padding: 4rem 0;
-  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
   min-height: 100vh;
+  padding: 8rem 4rem;
+  position: relative;
+  background: var(--bg-primary);
 }
 
-.experience-container {
+.experience-content {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 2rem;
+  position: relative;
+}
+
+.section-header {
+  margin-bottom: 5rem;
+  position: relative;
+}
+
+.section-number {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  margin-bottom: 1rem;
+  letter-spacing: 3px;
+  display: block;
 }
 
 .section-title {
-  text-align: center;
-  font-size: 2.5rem;
-  margin-bottom: 3rem;
-  background: linear-gradient(45deg, #ff6b6b, #845ec2);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  font-size: 3.5rem;
+  font-weight: 600;
+  margin: 0;
+  letter-spacing: -1px;
+  color: var(--text-primary);
 }
 
-.timeline {
+.experience-timeline {
+  display: flex;
+  flex-direction: column;
+  gap: 4rem;
   position: relative;
-  max-width: 1000px;
-  margin: 0 auto;
 }
 
-.timeline::after {
+/* Add timeline line */
+.experience-timeline::before {
   content: '';
   position: absolute;
-  width: 2px;
-  background: #845ec2;
+  left: -2rem;
   top: 0;
   bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
+  width: 1px;
+  background: var(--border-color);
 }
 
-.timeline-item {
-  padding: 10px 40px;
+.experience-card {
+  padding: 3rem;
+  background: transparent;
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  transition: all 0.4s ease;
   position: relative;
-  width: 50%;
-  margin-bottom: 2rem;
+  backdrop-filter: blur(10px);
 }
 
-.timeline-item::after {
+/* Add timeline dot */
+.experience-card::before {
   content: '';
   position: absolute;
-  width: 20px;
-  height: 20px;
-  background: linear-gradient(45deg, #ff6b6b, #845ec2);
+  left: -2.5rem;
+  top: 2rem;
+  width: 12px;
+  height: 12px;
   border-radius: 50%;
-  top: 20px;
+  background: var(--text-primary);
+  border: 2px solid var(--bg-primary);
+  z-index: 1;
 }
 
-.timeline-item.left {
-  left: 0;
-}
-
-.timeline-item.right {
-  left: 50%;
-}
-
-.timeline-item.left::after {
-  right: -10px;
-}
-
-.timeline-item.right::after {
-  left: -10px;
-}
-
-.timeline-content {
-  padding: 2rem;
-  background: white;
-  border-radius: 15px;
+.experience-card:hover {
+  transform: translateX(15px);
+  border-color: var(--text-primary);
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease;
-}
-
-.timeline-content:hover {
-  transform: translateY(-5px);
 }
 
 .experience-header {
-  margin-bottom: 1.5rem;
+  margin-bottom: 2rem;
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 1.5rem;
 }
 
-.experience-title {
-  font-size: 1.5rem;
-  color: #845ec2;
-  margin-bottom: 0.5rem;
+.role {
+  font-size: 2rem;
+  font-weight: 600;
+  margin: 0;
+  color: var(--text-primary);
+  letter-spacing: -0.5px;
 }
 
-.company-info {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 0.5rem;
-}
-
-.company-name {
+.company {
+  font-size: 1.3rem;
+  color: var(--text-secondary);
+  margin-top: 0.5rem;
   font-weight: 500;
-  color: #333;
 }
 
-.location {
-  color: #666;
+.experience-meta {
+  display: flex;
+  gap: 3rem;
+  margin-bottom: 2.5rem;
+  color: var(--text-secondary);
 }
 
-.period {
-  display: block;
-  color: #666;
-  font-size: 0.9rem;
+.meta-item {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  font-size: 1rem;
 }
 
-.responsibilities {
-  list-style-type: none;
-  padding-left: 0;
-  margin-bottom: 1.5rem;
+.meta-item svg {
+  font-size: 1.2rem;
+  opacity: 0.8;
 }
 
-.responsibilities li {
+.experience-description {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 2.5rem 0;
+}
+
+.experience-description li {
   position: relative;
-  padding-left: 1.5rem;
-  margin-bottom: 0.5rem;
-  color: #555;
-  line-height: 1.6;
-}
-
-.responsibilities li::before {
-  content: '•';
-  color: #845ec2;
-  position: absolute;
-  left: 0;
-  font-size: 1.2rem;
-}
-
-.projects-section {
-  border-top: 1px solid #eee;
-  padding-top: 1.5rem;
-}
-
-.projects-section h4 {
-  color: #845ec2;
-  margin-bottom: 1rem;
-  font-size: 1.2rem;
-}
-
-.project-item {
-  margin-bottom: 1.5rem;
-}
-
-.project-item h5 {
-  color: #333;
-  margin-bottom: 0.5rem;
+  padding-left: 2rem;
+  margin-bottom: 1.2rem;
+  color: var(--text-secondary);
+  line-height: 1.7;
   font-size: 1.1rem;
 }
 
-.project-item p {
-  color: #666;
-  line-height: 1.6;
+.experience-description li::before {
+  content: '→';
+  position: absolute;
+  left: 0;
+  color: var(--text-primary);
+  font-weight: 600;
 }
 
+.technologies {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.tech-tag {
+  padding: 0.6rem 1.2rem;
+  background: transparent;
+  border: 1px solid var(--border-color);
+  border-radius: 25px;
+  font-size: 0.9rem;
+  color: var(--text-primary);
+  transition: all 0.3s ease;
+  font-weight: 500;
+}
+
+.tech-tag:hover {
+  background: var(--text-primary);
+  color: var(--bg-primary);
+  border-color: var(--text-primary);
+  transform: translateY(-2px);
+}
+
+/* Dark mode styles */
+.dark-mode .experience-card {
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.dark-mode .experience-card:hover {
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+/* Responsive styles */
 @media (max-width: 768px) {
-  .timeline::after {
-    left: 31px;
+  .experience-section {
+    padding: 6rem 2rem;
   }
 
-  .timeline-item {
-    width: 100%;
-    padding-left: 70px;
-    padding-right: 25px;
+  .experience-timeline::before {
+    left: -1rem;
   }
 
-  .timeline-item.right {
-    left: 0;
-  }
-
-  .timeline-item::after {
-    left: 21px;
+  .experience-card::before {
+    left: -1.5rem;
   }
 
   .section-title {
-    font-size: 2rem;
+    font-size: 2.8rem;
   }
 
-  .company-info {
+  .role {
+    font-size: 1.8rem;
+  }
+
+  .experience-meta {
     flex-direction: column;
+    gap: 1rem;
+  }
+
+  .experience-card {
+    padding: 2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .experience-section {
+    padding: 4rem 1.5rem;
+  }
+
+  .section-title {
+    font-size: 2.2rem;
+  }
+
+  .experience-timeline::before {
+    display: none;
+  }
+
+  .experience-card::before {
+    display: none;
   }
 } 

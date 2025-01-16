@@ -1,89 +1,104 @@
-import React, { useState } from "react";
-import { Link, useLocation } from "react-router-dom";
-import "../styles/navbar.css";
+import React, { useState, useEffect } from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { useTheme } from '../context/ThemeContext';
-import { FaMoon, FaSun, FaDownload, FaBars, FaTimes } from 'react-icons/fa';
+import { FaMoon, FaSun, FaBars, FaTimes, FaDownload } from 'react-icons/fa';
+import '../styles/navbar.css';
 
 const Navbar = () => {
-  const location = useLocation();
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState('');
   const { isDarkMode, toggleTheme } = useTheme();
-  const [isOpen, setIsOpen] = useState(false);
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const handleScroll = () => {
+    const sections = document.querySelectorAll('section');
+    const scrollPosition = window.scrollY + 100;
+
+    sections.forEach(section => {
+      const top = section.offsetTop;
+      const height = section.offsetHeight;
+      const id = section.getAttribute('id');
+
+      if (scrollPosition >= top && scrollPosition < top + height) {
+        setActiveSection(id);
+      }
+    });
+  };
+
+  useEffect(() => {
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   const handleResumeDownload = () => {
     window.open('/resume.pdf', '_blank');
   };
 
-  const toggleMenu = () => {
-    setIsOpen(!isOpen);
-  };
+  const navItems = [
+    { name: 'Home', path: '/' },
+    { name: 'About', path: '/about' },
+    { name: 'Skills', path: '/skills' },
+    { name: 'Projects', path: '/projects' },
+    { name: 'Contact', path: '/contact' }
+  ];
 
   return (
-    <nav className={`navbar ${isDarkMode ? 'dark' : ''}`}>
-      <div className="nav-content">
-        <div className="nav-brand">
-          <Link to="/" className="brand-text">Nimmi Alampatta</Link>
-          <button className="menu-toggle" onClick={toggleMenu}>
-            {isOpen ? <FaTimes /> : <FaBars />}
-          </button>
+    <nav className={`navbar ${isDarkMode ? 'dark-mode' : ''}`}>
+      <div className="navbar-content">
+        <div className="nav-left">
+          <div className="logo">
+            <span className="logo-text" aria-label="Nimmi Alampatta">N</span>
+          </div>
+
+          <div className={`nav-links ${isMenuOpen ? 'open' : ''}`}>
+            {navItems.map((item, index) => (
+              <div 
+                key={index}
+                className="nav-item"
+                style={{ animationDelay: `${index * 0.1}s` }}
+              >
+                <a
+                  href={item.path}
+                  className={location.pathname === item.path ? 'active' : ''}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    navigate(item.path);
+                    setIsMenuOpen(false);
+                  }}
+                >
+                  {item.name}
+                </a>
+              </div>
+            ))}
+          </div>
         </div>
 
-        <div className={`nav-menu ${isOpen ? 'active' : ''}`}>
-          <div className="nav-links">
-            <Link 
-              className={`nav-text ${location.pathname === '/' ? 'active' : ''}`} 
-              to="/"
-              onClick={() => setIsOpen(false)}
-            >
-              Home
-            </Link>
-            <Link 
-              className={`nav-text ${location.pathname === '/about' ? 'active' : ''}`} 
-              to="/about"
-              onClick={() => setIsOpen(false)}
-            >
-              About
-            </Link>
-            <Link 
-              className={`nav-text ${location.pathname === '/projects' ? 'active' : ''}`} 
-              to="/projects"
-              onClick={() => setIsOpen(false)}
-            >
-              Projects
-            </Link>
-            <Link 
-              className={`nav-text ${location.pathname === '/skills' ? 'active' : ''}`} 
-              to="/skills"
-              onClick={() => setIsOpen(false)}
-            >
-              Skills
-            </Link>
-            <Link 
-              className={`nav-text ${location.pathname === '/experience' ? 'active' : ''}`} 
-              to="/experience"
-              onClick={() => setIsOpen(false)}
-            >
-              Experience
-            </Link>
-            <Link 
-              className={`nav-text ${location.pathname === '/contact' ? 'active' : ''}`} 
-              to="/contact"
-              onClick={() => setIsOpen(false)}
-            >
-              Contact Me
-            </Link>
-          </div>
-          <div className="nav-actions">
-            <button 
-              className="resume-btn bounce-animation"
-              onClick={handleResumeDownload}
-            >
-              <FaDownload className="download-icon" />
-              <span>Resume</span>
-            </button>
-            <button className="theme-toggle" onClick={toggleTheme}>
-              {isDarkMode ? <FaSun /> : <FaMoon />}
-            </button>
-          </div>
+        <div className="nav-right">
+          <button 
+            className="resume-btn"
+            onClick={handleResumeDownload}
+            aria-label="Download Resume"
+          >
+            <span>Resume</span>
+            <FaDownload />
+          </button>
+
+          <button 
+            className="theme-toggle"
+            onClick={toggleTheme}
+            aria-label="Toggle theme"
+          >
+            {isDarkMode ? <FaSun /> : <FaMoon />}
+          </button>
+
+          <button 
+            className="menu-toggle"
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+            aria-label="Toggle menu"
+          >
+            {isMenuOpen ? <FaTimes /> : <FaBars />}
+          </button>
         </div>
       </div>
     </nav>

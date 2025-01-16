@@ -1,38 +1,40 @@
 /* App.css */
 
-/* Theme Variables - Yellow & Black color scheme */
+/* Theme Variables - Update the light theme colors */
 :root {
   /* Primary Colors */
-  --bg-primary: #ffd62c;          /* Vibrant yellow background */
-  --bg-secondary: #ffe55c;        /* Lighter yellow */
-  --text-primary: #000000;        /* Pure black text */
-  --text-secondary: #1a1a1a;      /* Soft black text */
-  --accent-color: #000000;        /* Black accent */
-  --accent-hover: #333333;        /* Dark grey for hover */
+  --bg-primary: #000000;
+  --bg-secondary: #111111;
+  --text-primary: #ffffff;
+  --text-secondary: #cccccc;
+  --accent-color: #ffffff;
+  --accent-hover: #e0e0e0;
   
   /* Supporting Colors */
-  --card-bg: #fff7b5;            /* Very light yellow */
-  --border-color: #000000;       /* Black border */
-  --shadow-color: rgba(0, 0, 0, 0.15);  /* Subtle black shadow */
-  --hover-color: rgba(0, 0, 0, 0.05);   /* Light hover effect */
+  --card-bg: #1a1a1a;
+  --border-color: #333333;
+  --shadow-color: rgba(255, 255, 255, 0.1);
+  --hover-color: rgba(255, 255, 255, 0.05);
   
   /* Gradients */
   --gradient-primary: linear-gradient(45deg, #000000, #333333);
   --gradient-hover: linear-gradient(45deg, #333333, #000000);
+  --dot-color: rgba(14, 13, 12, 0.8); /* Increased opacity to 0.8 */
 }
 
-/* Dark mode colors - Inverted scheme */
+/* Dark mode colors */
 [data-theme='dark'] {
-  --bg-primary: #000000;          /* Black background */
-  --bg-secondary: #1a1a1a;        /* Soft black */
-  --text-primary: #ffd62c;        /* Yellow text */
-  --text-secondary: #ffe55c;      /* Light yellow */
-  --accent-color: #ffd62c;        /* Yellow accent */
-  --accent-hover: #ffe55c;        /* Light yellow hover */
-  --card-bg: #262626;            /* Dark grey cards */
-  --border-color: #ffd62c;       /* Yellow border */
-  --shadow-color: rgba(255, 214, 44, 0.15);
-  --hover-color: rgba(255, 214, 44, 0.05);
+  --bg-primary: #ffffff;          /* White background */
+  --bg-secondary: #f8f8f8;        /* Light grey background */
+  --text-primary: #000000;        /* Black text */
+  --text-secondary: #333333;      /* Dark grey text */
+  --accent-color: #000000;        /* Black accent */
+  --accent-hover: #333333;        /* Dark grey hover */
+  --card-bg: #ffffff;            /* White cards */
+  --border-color: #e0e0e0;        /* Light grey border */
+  --shadow-color: rgba(0, 0, 0, 0.1);
+  --hover-color: rgba(0, 0, 0, 0.05);
+  --dot-color: rgba(0, 0, 0, 0.4); /* Black dots with opacity */
 }
 
 /* Global Styles */
@@ -46,16 +48,52 @@
   text-rendering: optimizeLegibility;
 }
 
+html, body {
+  background-color: #000000;
+  color: #ffffff;
+  background-image: 
+  radial-gradient(
+    circle,
+    var(--dot-pattern) 2px,
+    transparent 1px
+  );
+}
+
 body {
-  font-family: var(--font-body);
-  background-color: var(--bg-primary);
-  color: var(--text-primary);
+  font-family: "Chalkboard SE", "Chalkboard", sans-serif;
+  background-color: #000000;
+  color: #ffffff;
   line-height: 1.7;
 }
 
 .app-container {
   min-height: 100vh;
-  background-color: var(--bg-primary);
+  background-color: #000000;
+  position: relative;
+  z-index: 1;
+}
+
+.app-container::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    radial-gradient(
+      var(--dot-color) 4px,
+      transparent 8px
+    ),
+    radial-gradient(
+      var(--dot-color) 4px,
+      transparent 4px
+    );
+  background-size: 60px 60px;
+  background-position: 0 0, 30px 30px;
+  pointer-events: none;
+  z-index: -1;
+  opacity: 1;
 }
 
 /* Typography */
@@ -369,8 +407,8 @@ label {
 
 /* Update component-specific styles */
 .navbar {
-  background: var(--bg-secondary);
-  border-bottom: 2px solid var(--accent-color);
+  /* background: var(--bg-secondary); */
+  /* border-bottom: 2px solid var(--accent-color); */
 }
 
 .resume-btn {
@@ -525,6 +563,104 @@ input:focus, textarea:focus, select:focus {
   font-weight: 700;
   letter-spacing: -1px;
   text-transform: uppercase;
+}
+
+.app {
+  min-height: 100vh;
+  position: relative;
+}
+
+/* Add padding to account for the fixed navbar */
+.about-section,
+.skills-section,
+.projects-section,
+.contact-section {
+  padding-left: 6rem; /* Adjust based on your navbar width */
+}
+
+@media (max-width: 768px) {
+  .about-section,
+  .skills-section,
+  .projects-section,
+  .contact-section {
+    padding-left: 0;
+    padding-top: 80px; /* Adjust based on your mobile navbar height */
+  }
+}
+
+/* Update section backgrounds */
+.section-container,
+.about-section,
+.skills-section,
+.projects-section,
+.contact-section,
+.hero-section {
+  background-color: #000000;
+  color: #ffffff;
+}
+
+/* Update card backgrounds */
+.card, .skill-box, .work-card {
+  background-color: #1a1a1a;
+  color: #ffffff;
+}
+
+/* Add any additional global styles here */
+
+/* Dark mode specific styles */
+.dark-mode {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+}
+
+.dark-mode .card {
+  background-color: var(--card-bg);
+  border-color: var(--border-color);
+}
+
+.dark-mode button {
+  background-color: var(--card-bg);
+  color: var(--text-primary);
+  border-color: var(--border-color);
+}
+
+.dark-mode button:hover {
+  background-color: var(--hover-color);
+  border-color: var(--accent-color);
+}
+
+.dark-mode input,
+.dark-mode textarea,
+.dark-mode select {
+  background-color: var(--card-bg);
+  color: var(--text-primary);
+  border-color: var(--border-color);
+}
+
+.dark-mode input:focus,
+.dark-mode textarea:focus,
+.dark-mode select:focus {
+  border-color: var(--accent-color);
+}
+
+/* Update section backgrounds in dark mode */
+.dark-mode .section-container,
+.dark-mode .about-section,
+.dark-mode .skills-section,
+.dark-mode .projects-section,
+.dark-mode .contact-section,
+.dark-mode .hero-section {
+  background-color: #ffffff;
+  color: #000000;
+}
+
+/* Update card backgrounds in dark mode */
+.dark-mode .card,
+.dark-mode .skill-box,
+.dark-mode .work-card {
+  background-color: #ffffff;
+  color: #000000;
+  border-color: #e0e0e0;
 }
 
 
