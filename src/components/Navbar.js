@@ -36,8 +36,8 @@ const Navbar = () => {
   const handleResumeDownload = () => {
     // window.open('/nim.pdf', '_blank');
     const link = document.createElement("a");
-    link.href = "/nim.pdf"; // Path to your resume in the public folder
-    link.download = "nim.pdf"; // The name for the downloaded file
+    link.href = "/resume.pdf"; // Path to your resume in the public folder
+    link.download = "resume.pdf"; // The name for the downloaded file
     link.click();
   };
 

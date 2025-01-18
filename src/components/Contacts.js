@@ -1,10 +1,52 @@
-import React from 'react';
+import React ,{useState} from 'react';
 import { useTheme } from '../context/ThemeContext';
 import { FaEnvelope, FaLinkedin, FaGithub, FaMapMarkerAlt } from 'react-icons/fa';
 import '../styles/contact.css';
+import emailjs from 'emailjs-com';
+import API from "../utils/emailkey"
+
 
 const Contact = () => {
   const { isDarkMode } = useTheme();
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    subject: "",
+    message: "",
+  });
+
+  // State for success/error messages
+  const [status, setStatus] = useState("");
+
+  // Handle input change
+  const handleChange = (e) => {
+    console.log("LOGDDDD",API)
+
+    const { name, value } = e.target;
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
+  };
+  const handleSubmit=(e)=>{
+
+    e.preventDefault();
+    setFormData({
+      name: "",
+      email: "",
+      subject: "",
+      message: "",
+    });
+    emailjs.sendForm(`service_cj2j0mb`, "template_jwdqw3g", e.target, "GrywLkh4ZTz5WnZIn")
+.then((result) => {
+setStatus("Message Sent, We will get back to you shortly");
+
+},
+(error) => {
+alert("An error occurred, Please try again", error.text);
+
+});
+  }
 
   return (
     <section className={`contact-section ${isDarkMode ? 'dark-mode' : ''}`}>
@@ -27,7 +69,7 @@ const Contact = () => {
             <div className="contact-links">
               <a href="mailto:your.email@example.com" className="contact-link">
                 <FaEnvelope />
-                <span>your.email@example.com</span>
+                <span>nimmialampatta@gmail.com</span>
               </a>
               <a href="https://linkedin.com/in/your-profile" target="_blank" rel="noopener noreferrer" className="contact-link">
                 <FaLinkedin />
@@ -45,23 +87,52 @@ const Contact = () => {
           </div>
 
           <div className="contact-form-container">
-            <form className="contact-form">
-              <div className="form-group">
-                <input type="text" placeholder="Your Name" required />
-              </div>
-              <div className="form-group">
-                <input type="email" placeholder="Your Email" required />
-              </div>
-              <div className="form-group">
-                <input type="text" placeholder="Subject" required />
-              </div>
-              <div className="form-group">
-                <textarea placeholder="Your Message" rows="6" required></textarea>
-              </div>
-              <button type="submit" className="submit-btn">
-                Send Message
-              </button>
-            </form>
+          <form className="contact-form" onSubmit={handleSubmit}>
+      <div className="form-group">
+        <input
+          type="text"
+          name="name"
+          value={formData.name}
+          placeholder="Your Name"
+          onChange={handleChange}
+          required
+        />
+      </div>
+      <div className="form-group">
+        <input
+          type="email"
+          name="email"
+          value={formData.email}
+          placeholder="Your Email"
+          onChange={handleChange}
+          required
+        />
+      </div>
+      <div className="form-group">
+        <input
+          type="text"
+          name="subject"
+          value={formData.subject}
+          placeholder="Subject"
+          onChange={handleChange}
+          required
+        />
+      </div>
+      <div className="form-group">
+        <textarea
+          name="message"
+          value={formData.message}
+          placeholder="Your Message"
+          rows="6"
+          onChange={handleChange}
+          required
+        ></textarea>
+      </div>
+      <button type="submit" className="submit-btn">
+        Send Message
+      </button>
+      {status && <p className="status-message">{status}</p>}
+    </form>
           </div>
         </div>
       </div>
