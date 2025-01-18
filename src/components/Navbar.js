@@ -1,13 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { useTheme } from '../context/ThemeContext';
-import { FaMoon, FaSun, FaBars, FaTimes, FaDownload } from 'react-icons/fa';
+import { FaBars, FaTimes, FaFileDownload } from 'react-icons/fa';
+import { PDFDownloadLink, Document, Page } from '@react-pdf/renderer'
+
 import '../styles/navbar.css';
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('');
-  const { isDarkMode, toggleTheme } = useTheme();
+  const { isDarkMode } = useTheme();
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -32,14 +34,17 @@ const Navbar = () => {
   }, []);
 
   const handleResumeDownload = () => {
-    window.open('/resume.pdf', '_blank');
+    // window.open('/nim.pdf', '_blank');
+    const link = document.createElement("a");
+    link.href = "/nim.pdf"; // Path to your resume in the public folder
+    link.download = "nim.pdf"; // The name for the downloaded file
+    link.click();
   };
 
   const navItems = [
     { name: 'Home', path: '/' },
     { name: 'About', path: '/about' },
     { name: 'Skills', path: '/skills' },
-    { name: 'Projects', path: '/projects' },
     { name: 'Contact', path: '/contact' }
   ];
 
@@ -81,15 +86,9 @@ const Navbar = () => {
             aria-label="Download Resume"
           >
             <span>Resume</span>
-            <FaDownload />
-          </button>
-
-          <button 
-            className="theme-toggle"
-            onClick={toggleTheme}
-            aria-label="Toggle theme"
-          >
-            {isDarkMode ? <FaSun /> : <FaMoon />}
+            {/* <a href='/nim.pdf' download>Click to download</a> */}
+            <FaFileDownload />
+            
           </button>
 
           <button 

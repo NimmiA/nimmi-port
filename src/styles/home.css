@@ -239,7 +239,7 @@ body {
   background-color: #000000;
   color: #ffffff;
   min-height: 100vh;
-  padding-top: 80px;
+  padding-top: 200px;
   display: flex;
   align-items: center;
   position: relative;
@@ -336,8 +336,8 @@ body {
 
 /* Section styles update */
 .section-header {
-  margin-bottom: 5rem;
-  padding-top: 8rem;
+  margin-bottom: 3rem;
+  padding-top: 0;
 }
 
 .section-number {
@@ -393,7 +393,7 @@ body {
 
 /* Contact section updates */
 .contact-section {
-  padding: 8rem 4rem;
+  padding: 4rem 15%;
 }
 
 .contact-grid {
@@ -601,72 +601,87 @@ body {
   display: flex;
   gap: 2rem;
   margin-top: 2.5rem;
-  opacity: 0;
-  animation: fadeIn 0.5s ease forwards;
-  animation-delay: 2s;
 }
 
 .social-link {
-  color: var(--primary-black);
-  font-size: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 1.8rem;
+  padding: 0.8rem;
+  border-radius: 50%;
   transition: all 0.3s ease;
   position: relative;
-  opacity: 0.6;
+  background: rgba(255, 255, 255, 0.1);
 }
 
-.social-link::after {
-  content: '';
+.social-label {
+  font-size: 0.9rem;
+  opacity: 0;
   position: absolute;
-  width: 100%;
-  height: 2px;
-  background: var(--primary-black);
-  bottom: -5px;
-  left: 0;
-  transform: scaleX(0);
-  transform-origin: right;
-  transition: transform 0.3s ease;
+  top: -25px;
+  left: 50%;
+  transform: translateX(-50%);
+  white-space: nowrap;
+  transition: all 0.3s ease;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 0.3rem 0.8rem;
+  border-radius: 4px;
+  pointer-events: none;
+}
+
+.social-link:hover .social-label {
+  opacity: 1;
+  top: -35px;
 }
 
 .social-link:hover {
-  opacity: 1;
-  transform: translateY(-3px);
+  transform: translateY(-5px);
 }
 
-.social-link:hover::after {
-  transform: scaleX(1);
-  transform-origin: left;
+/* Specific social media colors on hover */
+.social-link.linkedin:hover {
+  background: #0077b5;
+  box-shadow: 0 0 20px rgba(0, 119, 181, 0.3);
 }
 
-/* Add this new keyframe for the social links */
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+.social-link.github:hover {
+  background: #333;
+  box-shadow: 0 0 20px rgba(51, 51, 51, 0.3);
 }
 
-/* Dark mode styles for social links */
+.social-link.instagram:hover {
+  background: #e4405f;
+  box-shadow: 0 0 20px rgba(228, 64, 95, 0.3);
+}
+
+/* Dark mode adjustments */
 .dark-mode .social-link {
-  color: var(--primary-white);
+  color: #000000;
+  background: rgba(0, 0, 0, 0.1);
 }
 
-.dark-mode .social-link::after {
-  background: var(--primary-white);
+.dark-mode .social-label {
+  background: rgba(0, 0, 0, 0.1);
+  color: #000000;
 }
 
-/* Responsive styles for social links */
+/* Responsive adjustments */
 @media (max-width: 768px) {
   .social-links {
     gap: 1.5rem;
     margin-top: 2rem;
   }
-  
+
   .social-link {
-    font-size: 1.3rem;
+    font-size: 1.5rem;
+    padding: 0.6rem;
+  }
+
+  .social-label {
+    display: none;
   }
 }
 
@@ -810,7 +825,7 @@ body {
 
 .about-section {
   min-height: 100vh;
-  padding: 8rem 4rem;
+  padding: 4rem 4rem;
   background: #000000;
   color: #ffffff;
   position: relative;
@@ -990,7 +1005,7 @@ body {
 /* Responsive styles */
 @media (max-width: 768px) {
   .about-section {
-    padding: 6rem 2rem;
+    padding: 3rem 2rem;
   }
 
   .lead-text {
@@ -1008,7 +1023,7 @@ body {
 /* Add these styles to your home.css */
 .contact-section {
     min-height: 100vh;
-    padding: 8rem 15%;
+    padding: 4rem 15%;
     background: #000000;
   }
   
@@ -1091,7 +1106,7 @@ body {
   
   @media (max-width: 768px) {
     .contact-section {
-      padding: 6rem 2rem;
+      padding: 3rem 2rem;
     }
   
     .contact-content {
@@ -1103,3 +1118,370 @@ body {
       font-size: 3rem;
     }
   }
+
+/* Update skills grid styles */
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 2rem;
+  margin: 3rem 0;
+  padding: 0 2rem;
+}
+
+.skill-icon-box {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.skill-icon-box::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--skill-color);
+  opacity: 0.05;
+  transition: opacity 0.3s ease;
+}
+
+.skill-icon-box:hover {
+  transform: translateY(-5px);
+}
+
+.skill-icon-box:hover::before {
+  opacity: 0.1;
+}
+
+.skill-icon-wrapper {
+  font-size: 2.5rem;
+  color: var(--skill-color);
+  transition: transform 0.3s ease;
+}
+
+.skill-icon-box:hover .skill-icon-wrapper {
+  transform: scale(1.1);
+}
+
+.skill-name {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #ffffff;
+  text-align: center;
+}
+
+/* Dark mode adjustments */
+.dark-mode .skill-icon-box {
+  background: rgba(0, 0, 0, 0.05);
+  border-color: rgba(0, 0, 0, 0.1);
+}
+
+.dark-mode .skill-name {
+  color: #000000;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .skills-grid {
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    gap: 1.5rem;
+    padding: 0 1rem;
+  }
+
+  .skill-icon-wrapper {
+    font-size: 2rem;
+  }
+
+  .skill-name {
+    font-size: 0.8rem;
+  }
+}
+
+/* Skills slider styles */
+.skills-slider {
+  width: 100%;
+  overflow: hidden;
+  padding: 1rem 0;
+  position: relative;
+  background: transparent;
+}
+
+.skills-track {
+  display: flex;
+  animation: slide 30s linear infinite;
+  width: max-content;
+}
+
+.skill-icon-box {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  padding: 1rem;
+  margin: 0 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  transition: all 0.3s ease;
+  min-width: 80px;
+}
+
+.skill-icon-box:hover {
+  transform: translateY(-5px);
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.skill-icon-wrapper {
+  font-size: 1.8rem;
+  color: var(--skill-color);
+  transition: transform 0.3s ease;
+}
+
+.skill-icon-box:hover .skill-icon-wrapper {
+  transform: scale(1.1);
+}
+
+.skill-name {
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: #ffffff;
+  text-align: center;
+}
+
+@keyframes slide {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+/* Dark mode adjustments */
+.dark-mode .skill-icon-box {
+  background: rgba(0, 0, 0, 0.05);
+  border-color: rgba(0, 0, 0, 0.1);
+}
+
+.dark-mode .skill-icon-box:hover {
+  background: rgba(0, 0, 0, 0.1);
+}
+
+.dark-mode .skill-name {
+  color: #000000;
+}
+
+/* Pause animation on hover */
+.skills-slider:hover .skills-track {
+  animation-play-state: paused;
+}
+
+/* Add gradient overlay for smooth edges */
+.skills-slider::before,
+.skills-slider::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 100px;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.skills-slider::before {
+  left: 0;
+  background: linear-gradient(to right, #000000, transparent);
+}
+
+.skills-slider::after {
+  right: 0;
+  background: linear-gradient(to left, #000000, transparent);
+}
+
+.dark-mode .skills-slider::before {
+  background: linear-gradient(to right, #ffffff, transparent);
+}
+
+.dark-mode .skills-slider::after {
+  background: linear-gradient(to left, #ffffff, transparent);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .skill-icon-box {
+    min-width: 70px;
+    padding: 0.8rem;
+  }
+
+  .skill-icon-wrapper {
+    font-size: 1.5rem;
+  }
+
+  .skill-name {
+    font-size: 0.7rem;
+  }
+}
+
+/* Work section styles */
+.work-section {
+  min-height: 100vh;
+  padding: 4rem 4rem;
+  background: #000000;
+  color: #ffffff;
+  position: relative;
+}
+
+.work-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 3rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.work-card {
+  position: relative;
+  border-radius: 16px;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: all 0.3s ease;
+}
+
+.work-card:hover {
+  transform: translateY(-10px);
+}
+
+.work-image {
+  width: 100%;
+  height: 300px;
+  overflow: hidden;
+}
+
+.work-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: all 0.5s ease;
+}
+
+.work-card:hover .work-image img {
+  transform: scale(1.1);
+}
+
+.work-info {
+  padding: 2rem;
+  background: rgba(0, 0, 0, 0.8);
+  color: #ffffff;
+}
+
+.work-info h3 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  font-weight: 500;
+}
+
+.work-info p {
+  font-size: 0.9rem;
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.project-tags {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.project-tag {
+  background: rgba(255, 255, 255, 0.1);
+  padding: 0.4rem 1rem;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  color: #ffffff;
+}
+
+.view-project-btn {
+  display: inline-block;
+  padding: 0.8rem 1.5rem;
+  background: transparent;
+  border: 1px solid #ffffff;
+  color: #ffffff;
+  text-decoration: none;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  transition: all 0.3s ease;
+}
+
+.view-project-btn:hover {
+  background: #ffffff;
+  color: #000000;
+}
+
+/* Dark mode adjustments */
+.dark-mode .work-card {
+  background: rgba(0, 0, 0, 0.05);
+  border-color: rgba(0, 0, 0, 0.1);
+}
+
+.dark-mode .work-info {
+  background: rgba(255, 255, 255, 0.9);
+  color: #000000;
+}
+
+.dark-mode .work-info p {
+  color: rgba(0, 0, 0, 0.8);
+}
+
+.dark-mode .project-tag {
+  background: rgba(0, 0, 0, 0.1);
+  color: #000000;
+}
+
+.dark-mode .view-project-btn {
+  border-color: #000000;
+  color: #000000;
+}
+
+.dark-mode .view-project-btn:hover {
+  background: #000000;
+  color: #ffffff;
+}
+
+/* Responsive adjustments */
+@media (max-width: 1024px) {
+  .work-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .work-section {
+    padding: 3rem 2rem;
+  }
+
+  .work-image {
+    height: 250px;
+  }
+
+  .work-info {
+    padding: 1.5rem;
+  }
+
+  .work-info h3 {
+    font-size: 1.3rem;
+  }
+}

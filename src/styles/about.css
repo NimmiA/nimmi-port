@@ -46,7 +46,7 @@
 
 .section-number {
   font-size: 0.8rem;
-  color: var(--gray-dark);
+  color: var(--primary-white);
   margin-bottom: 1rem;
   letter-spacing: 3px;
   display: block;
@@ -103,7 +103,7 @@
 .about-description {
   font-size: 1.1rem;
   line-height: 1.8;
-  color: var(--gray-dark);
+  color: var(--primary-white);
   margin-bottom: 1.5rem;
 }
 
@@ -141,7 +141,7 @@
 .specialization-item p {
   font-size: 1rem;
   line-height: 1.6;
-  color: var(--gray-dark);
+  color: var(--primary-white);
 }
 
 .connect-button {
@@ -150,8 +150,8 @@
   gap: 0.8rem;
   margin-top: 3rem;
   padding: 1rem 2rem;
-  background: var(--primary-black);
-  color: var(--primary-white);
+  background: var(--primary-white);
+  color: var(--primary-black);
   text-decoration: none;
   font-size: 0.9rem;
   letter-spacing: 1px;

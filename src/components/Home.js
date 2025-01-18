@@ -1,7 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { useTheme } from '../context/ThemeContext';
 import { useNavigate } from 'react-router-dom';
-import { FaCode, FaServer, FaDatabase, FaPalette, FaChevronRight, FaGithub, FaLinkedin, FaEnvelope, FaInstagram } from 'react-icons/fa';
+import { 
+  FaCode, FaServer, FaDatabase, FaPalette, FaChevronRight, 
+  FaGithub, FaLinkedin, FaEnvelope, FaInstagram, FaReact, 
+  FaNodeJs, FaJs, FaHtml5, FaCss3Alt, FaGitAlt, FaAws, FaVuejs 
+} from 'react-icons/fa';
+import { SiNuxtdotjs } from 'react-icons/si';
 import '../styles/home.css';
 
 const Home = () => {
@@ -64,43 +69,17 @@ const Home = () => {
     }
   ];
 
-  const skills = [
-    {
-      category: "Frontend Magic ✨",
-      icon: <FaCode />,
-      items: [
-        "React.js - Building beautiful UIs",
-        "Vue.js - Creating interactive experiences",
-        "JavaScript - Making things come alive",
-        "HTML/CSS - Crafting pixel-perfect designs",
-        "Responsive Design - Making it look great everywhere"
-      ],
-      color: "#FFD700" // Gold
-    },
-    {
-      category: "Backend Powers 🚀",
-      icon: <FaServer />,
-      items: [
-        "Node.js - Powering the backend",
-        "Express - Fast and reliable servers",
-        "Python - Smart and efficient solutions",
-        "RESTful APIs - Connecting the dots",
-        "GraphQL - Modern data fetching"
-      ],
-      color: "#4CAF50" // Green
-    },
-    {
-      category: "Data Wizardry 🔮",
-      icon: <FaDatabase />,
-      items: [
-        "MongoDB - Flexible data storage",
-        "PostgreSQL - Reliable and robust",
-        "MySQL - Traditional but powerful",
-        "Firebase - Real-time magic",
-        "Cloud Storage - Scalable solutions"
-      ],
-      color: "#2196F3" // Blue
-    }
+  const skillIcons = [
+    { name: "React", icon: <FaReact />, color: "#61DAFB" },
+    { name: "Vue.js", icon: <FaVuejs />, color: "#4FC08D" },
+    { name: "Nuxt.js", icon: <SiNuxtdotjs />, color: "#00DC82" },
+    { name: "Node.js", icon: <FaNodeJs />, color: "#339933" },
+    { name: "JavaScript", icon: <FaJs />, color: "#F7DF1E" },
+    { name: "HTML5", icon: <FaHtml5 />, color: "#E34F26" },
+    { name: "CSS3", icon: <FaCss3Alt />, color: "#1572B6" },
+    { name: "Database", icon: <FaDatabase />, color: "#336791" },
+    { name: "Git", icon: <FaGitAlt />, color: "#F05032" },
+    { name: "AWS", icon: <FaAws />, color: "#FF9900" },
   ];
 
   return (
@@ -123,14 +102,35 @@ const Home = () => {
                   Crafting beautiful and functional web experiences
                 </div>
                 <div className="social-links fade-in">
-                  <a href="https://linkedin.com/in/your-profile" target="_blank" rel="noopener noreferrer" className="social-link">
+                  <a 
+                    href="https://linkedin.com/in/your-profile" 
+                    target="_blank" 
+                    rel="noopener noreferrer" 
+                    className="social-link linkedin"
+                    aria-label="LinkedIn Profile"
+                  >
                     <FaLinkedin />
+                    <span className="social-label">LinkedIn</span>
                   </a>
-                  <a href="https://github.com/your-username" target="_blank" rel="noopener noreferrer" className="social-link">
+                  <a 
+                    href="https://github.com/your-username" 
+                    target="_blank" 
+                    rel="noopener noreferrer" 
+                    className="social-link github"
+                    aria-label="GitHub Profile"
+                  >
                     <FaGithub />
+                    <span className="social-label">GitHub</span>
                   </a>
-                  <a href="https://instagram.com/your-profile" target="_blank" rel="noopener noreferrer" className="social-link">
+                  <a 
+                    href="https://instagram.com/your-profile" 
+                    target="_blank" 
+                    rel="noopener noreferrer" 
+                    className="social-link instagram"
+                    aria-label="Instagram Profile"
+                  >
                     <FaInstagram />
+                    <span className="social-label">Instagram</span>
                   </a>
                 </div>
               </div>
@@ -149,65 +149,28 @@ const Home = () => {
         <div id="about" className="about-section">
           <div className="section-header fade-in">
             <span className="section-number">01</span>
-            <h2 className="section-title">SKILLS & EXPERTISE</h2>
           </div>
           <div className="about-content">
-            <div className="about-grid">
-             
-              <div className="skills-overview">
-                <div 
-                  className="skill-box"
-                  style={{ '--accent-color': '#FFD700' }}
-                >
-                  <div className="skill-header">
-                    <span className="skill-icon"><FaCode /></span>
-                    <h3>Frontend Magic ✨</h3>
+            <div className="skills-slider">
+              <div className="skills-track">
+                {[...skillIcons, ...skillIcons].map((skill, index) => (
+                  <div 
+                    key={index}
+                    className="skill-icon-box"
+                    style={{ '--skill-color': skill.color }}
+                  >
+                    <div className="skill-icon-wrapper">
+                      {skill.icon}
+                    </div>
+                    <span className="skill-name">{skill.name}</span>
                   </div>
-                  <ul className="skill-list">
-                    <li className="skill-item">React.js - Building beautiful UIs</li>
-                    <li className="skill-item">Vue.js - Creating interactive experiences</li>
-                    <li className="skill-item">JavaScript - Making things alive</li>
-                    <li className="skill-item">HTML/CSS - Pixel-perfect designs</li>
-                  </ul>
-                </div>
-
-                <div 
-                  className="skill-box"
-                  style={{ '--accent-color': '#4CAF50' }}
-                >
-                  <div className="skill-header">
-                    <span className="skill-icon"><FaServer /></span>
-                    <h3>Backend Powers 🚀</h3>
-                  </div>
-                  <ul className="skill-list">
-                    <li className="skill-item">Node.js - Server-side magic</li>
-                    <li className="skill-item">Express - Fast & reliable APIs</li>
-                    <li className="skill-item">Python - Smart solutions</li>
-                    <li className="skill-item">RESTful APIs - Connectivity</li>
-                  </ul>
-                </div>
-
-                <div 
-                  className="skill-box"
-                  style={{ '--accent-color': '#2196F3' }}
-                >
-                  <div className="skill-header">
-                    <span className="skill-icon"><FaDatabase /></span>
-                    <h3>Data Wizardry 🔮</h3>
-                  </div>
-                  <ul className="skill-list">
-                    <li className="skill-item">MongoDB - Flexible storage</li>
-                    <li className="skill-item">PostgreSQL - Robust databases</li>
-                    <li className="skill-item">MySQL - Reliable data</li>
-                    <li className="skill-item">Firebase - Real-time magic</li>
-                  </ul>
-                </div>
+                ))}
               </div>
-              <div className="view-more fade-in">
-                <button onClick={() => navigate('/skills')} className="view-more-btn">
-                  View All Skills <FaChevronRight />
-                </button>
-              </div>
+            </div>
+            <div className="view-more fade-in">
+              <button onClick={() => navigate('/skills')} className="view-more-btn">
+                View All Skills <FaChevronRight />
+              </button>
             </div>
           </div>
         </div>
@@ -238,43 +201,42 @@ const Home = () => {
           </div>
         </div>
 
-        // Update the contact section in Home.js
-<div id="contact" className="contact-section">
-  <div className="section-number">03</div>
-  <h2 className="contact-title">GET IN TOUCH</h2>
-  
-  <div className="contact-content">
-    <div className="contact-info">
-      <p className="contact-description">
-        Have a project in mind? Let's work together to create something amazing.
-      </p>
-      
-      <div className="contact-links">
-        <a href="mailto:your.email@example.com" className="contact-link">
-          <FaEnvelope />
-          <span>your.email@example.com</span>
-        </a>
-        <a href="https://linkedin.com/in/your-profile" className="contact-link">
-          <FaLinkedin />
-          <span>LinkedIn</span>
-        </a>
-        <a href="https://github.com/your-username" className="contact-link">
-          <FaGithub />
-          <span>GitHub</span>
-        </a>
-      </div>
-    </div>
+        <div id="contact" className="contact-section">
+          <div className="section-number">03</div>
+          <h2 className="contact-title">GET IN TOUCH</h2>
+          
+          <div className="contact-content">
+            <div className="contact-info">
+              <p className="contact-description">
+                Have a project in mind? Let's work together to create something amazing.
+              </p>
+              
+              <div className="contact-links">
+                <a href="mailto:your.email@example.com" className="contact-link">
+                  <FaEnvelope />
+                  <span>your.email@example.com</span>
+                </a>
+                <a href="https://linkedin.com/in/your-profile" className="contact-link">
+                  <FaLinkedin />
+                  <span>LinkedIn</span>
+                </a>
+                <a href="https://github.com/your-username" className="contact-link">
+                  <FaGithub />
+                  <span>GitHub</span>
+                </a>
+              </div>
+            </div>
 
-    <div className="contact-form">
-      <input type="text" placeholder="Your Name" className="form-input" />
-      <input type="email" placeholder="Your Email" className="form-input" />
-      <textarea placeholder="Your Message" className="form-input" rows="4"></textarea>
-      <button type="submit" className="send-btn">
-        Send Message
-      </button>
-    </div>
-  </div>
-</div>
+            <div className="contact-form">
+              <input type="text" placeholder="Your Name" className="form-input" />
+              <input type="email" placeholder="Your Email" className="form-input" />
+              <textarea placeholder="Your Message" className="form-input" rows="4"></textarea>
+              <button type="submit" className="send-btn">
+                Send Message
+              </button>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
   );
