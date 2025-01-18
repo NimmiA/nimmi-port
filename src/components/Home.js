@@ -103,7 +103,7 @@ const Home = () => {
                 </div>
                 <div className="social-links fade-in">
                   <a 
-                    href="https://linkedin.com/in/your-profile" 
+                    href="https://linkedin.com/in/nimmialampatta" 
                     target="_blank" 
                     rel="noopener noreferrer" 
                     className="social-link linkedin"
@@ -113,7 +113,7 @@ const Home = () => {
                     <span className="social-label">LinkedIn</span>
                   </a>
                   <a 
-                    href="https://github.com/your-username" 
+                    href="https://github.com/NimmiA" 
                     target="_blank" 
                     rel="noopener noreferrer" 
                     className="social-link github"
