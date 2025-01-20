@@ -53,7 +53,7 @@ const Navbar = () => {
       <div className="navbar-content">
         <div className="nav-left">
           <div className="logo">
-            <span className="logo-text" aria-label="Nimmi Alampatta">N</span>
+            <span className="logo-text" aria-label="Nimmi Alampatta">NA</span>
           </div>
 
           <div className={`nav-links ${isMenuOpen ? 'open' : ''}`}>

@@ -27,7 +27,6 @@ const Skills = () => {
       skills: [
         { name: "Node.js", proficiency: 85, details: "Express, Middleware, RESTful APIs, WebSocket" },
         { name: "Express.js", proficiency: 85, details: "JWT Auth, OAuth, Passport.js, Middleware Chains" },
-        { name: "Python", proficiency: 80, details: "Django, Flask, FastAPI, SQLAlchemy, Pandas" },
         { name: "RESTful APIs", proficiency: 90, details: "OpenAPI/Swagger, Rate Limiting, Caching Strategies" },
         { name: "GraphQL", proficiency: 75, details: "Apollo Server, Type Definitions, Resolvers, Mutations" }
       ]
@@ -38,10 +37,8 @@ const Skills = () => {
       description: "Managing data and deploying scalable cloud solutions",
       skills: [
         { name: "MongoDB", proficiency: 85, details: "Aggregation, Indexing, Atlas, Mongoose ODM" },
-        { name: "PostgreSQL", proficiency: 80, details: "Query Optimization, PL/pgSQL, Triggers, Views" },
         { name: "MySQL", proficiency: 85, details: "Stored Procedures, Triggers, Indexing, Replication" },
-        { name: "Firebase", proficiency: 80, details: "Realtime DB, Auth, Cloud Functions, Hosting" },
-        { name: "AWS", proficiency: 75, details: "S3, Lambda, EC2, CloudFront, Route 53, RDS" }
+        { name: "AWS", proficiency: 65, details: "S3, Lambda, EC2" }
       ]
     },
     {
@@ -50,7 +47,6 @@ const Skills = () => {
       description: "Utilizing modern tools and practices for efficient development workflow",
       skills: [
         { name: "Git & GitHub", proficiency: 90, details: "Version Control, CI/CD, Actions, Branch Strategy" },
-        { name: "Docker", proficiency: 75, details: "Containerization, Docker Compose, Kubernetes basics" },
         { name: "Testing", proficiency: 85, details: "Jest, React Testing Library, Cypress, Mocha" },
         { name: "Build Tools", proficiency: 80, details: "Webpack, Babel, Vite, ESLint, Prettier" },
         { name: "DevOps", proficiency: 75, details: "Jenkins, GitHub Actions, Travis CI, Netlify" }

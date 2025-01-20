@@ -25,7 +25,7 @@
 .nav-left {
   display: flex;
   align-items: center;
-  gap: 3rem;
+  gap: 18rem;
 }
 
 .nav-right {
@@ -41,7 +41,7 @@
 }
 
 .logo-text {
-  font-family: 'Geneva', sans-serif;
+  font-family: 'Blanka', sans-serif;
   color: #f0ebeb;
   position: relative;
 }
@@ -49,6 +49,7 @@
 /* Add full name hover effect */
 .logo-text::before {
   content: 'Nimmi Alampatta';
+  font-family: "monterrat", sans-serif;
   position: absolute;
   top: 50%;
   left: 0;

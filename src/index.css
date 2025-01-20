@@ -2,7 +2,14 @@
 html, body, #root {
   height: 100%;
   margin: 0;
-  font-family: "Chalkboard SE", "Chalkboard";
+  font-family: "montserrat", sans-serif;
   color: #ffffff;
   
+}
+
+@font-face {
+  font-family: 'Blanka';
+  src: local('Blanka'), url(../public/Blanka-Regular.otf) format('woff');
+  /* other formats include: 'woff2', 'truetype, 'opentype',
+                            'embedded-opentype', and 'svg' */
 }

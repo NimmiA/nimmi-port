@@ -8,7 +8,7 @@
 
 /* Global styles */
 body {
-  font-family: "Chalkboard SE", "Chalkboard";
+  /* font-family: "Chalkboard SE", "Chalkboard"; */
   background-color: var(--primary-black);
   color: var(--primary-white);
   
@@ -258,7 +258,7 @@ body {
     radial-gradient(
       circle,
       var(--dot-pattern) 2px,
-      transparent 1px
+      transparent 2px
     );
   background-size: 30px 30px;
   opacity: 0.1;
@@ -278,8 +278,8 @@ body {
 }
 
 .main-title {
-  font-family: 'Chalkboard SE', 'Chalkboard', sans-serif;
-  font-size: 7rem;
+  font-family: "montserrat", sans-serif;
+  font-size: 2rem;
   font-weight: 500;
   line-height: 1;
   margin: 0;
@@ -288,10 +288,10 @@ body {
 }
 
 .main-title.highlight {
-  font-size: 7rem;
+  font-size: 2rem;
   font-weight: 500;
-  margin-top: -1rem;
-  letter-spacing: 2px;
+  margin-top: 5rem;
+  letter-spacing: 6px;
 }
 
 .role-tag {
@@ -329,7 +329,7 @@ body {
   right: -2rem;
   width: 100%;
   height: 100%;
-  background-image: radial-gradient(var(--dot-pattern) 1px, transparent 1px);
+  background-image: radial-gradient(var(--dot-pattern) 2px, transparent 2px);
   background-size: 15px 15px;
   z-index: 1;
 }
@@ -359,6 +359,8 @@ body {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 3rem;
+
+
   padding: 0 4rem;
 }
 
@@ -949,7 +951,7 @@ body {
 }
 
 .view-more-btn {
-  background: none;
+  background: white;
   border: 2px solid var(--primary-black);
   color: var(--primary-black);
   padding: 1rem 2.5rem;
@@ -1129,7 +1131,7 @@ body {
 }
 
 .skill-icon-box {
-  background: rgba(255, 255, 255, 0.05);
+  background: rgba(240, 234, 234, 0.05);
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 16px;
   padding: 1.5rem;
@@ -1172,10 +1174,10 @@ body {
   transform: scale(1.1);
 }
 
-.skill-name {
+.sskill-name-color{
   font-size: 0.9rem;
   font-weight: 500;
-  color: #ffffff;
+  color:#ffffff;
   text-align: center;
 }
 
@@ -1185,9 +1187,7 @@ body {
   border-color: rgba(0, 0, 0, 0.1);
 }
 
-.dark-mode .skill-name {
-  color: #000000;
-}
+
 
 /* Responsive adjustments */
 @media (max-width: 768px) {
@@ -1328,16 +1328,26 @@ body {
 
   .skill-name {
     font-size: 0.7rem;
+    color: #ffffff;
   }
 }
 
 /* Work section styles */
-.work-section {
+.work-section::before {
   min-height: 100vh;
   padding: 4rem 4rem;
   background: #000000;
   color: #ffffff;
   position: relative;
+  background-image: 
+  radial-gradient(
+    circle,
+    var(--dot-pattern) 2px,
+    transparent 2px
+  );
+background-size: 30px 30px;
+opacity: 0.1;
+z-index: 1;
 }
 
 .work-grid {

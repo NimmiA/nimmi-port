@@ -92,7 +92,10 @@ const Home = () => {
             <div className="text-content">
               <div className="title-container">
                 <h1 className="main-title highlight animate-title">
-                  {['N', 'I', 'M', 'M', 'I'].map((letter, index) => (
+                  {['N', 'I', 'M', 'M', 'I',' '].map((letter, index) => (
+                    <span key={index} style={{ animationDelay: `${index * 0.1}s` }}>{letter}</span>
+                  ))}
+                    {['A','L','A','M','P','A','T','T','A'].map((letter, index) => (
                     <span key={index} style={{ animationDelay: `${index * 0.1}s` }}>{letter}</span>
                   ))}
                 </h1>
@@ -122,7 +125,7 @@ const Home = () => {
                     <FaGithub />
                     <span className="social-label">GitHub</span>
                   </a>
-                  <a 
+                  {/* <a 
                     href="https://instagram.com/your-profile" 
                     target="_blank" 
                     rel="noopener noreferrer" 
@@ -131,7 +134,7 @@ const Home = () => {
                   >
                     <FaInstagram />
                     <span className="social-label">Instagram</span>
-                  </a>
+                  </a> */}
                 </div>
               </div>
             </div>
@@ -157,12 +160,12 @@ const Home = () => {
                   <div 
                     key={index}
                     className="skill-icon-box"
-                    style={{ '--skill-color': skill.color }}
+                    style={{ '--skill-color': skill.color}}
                   >
                     <div className="skill-icon-wrapper">
                       {skill.icon}
                     </div>
-                    <span className="skill-name">{skill.name}</span>
+                    <span className="skill-name-color">{skill.name}</span>
                   </div>
                 ))}
               </div>

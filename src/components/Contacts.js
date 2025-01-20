@@ -19,9 +19,8 @@ const Contact = () => {
   const [status, setStatus] = useState("");
 
   // Handle input change
-  const handleChange = (e) => {
-    console.log("LOGDDDD",API)
-
+  const handleChange = (e) => 
+{
     const { name, value } = e.target;
     setFormData((prevData) => ({
       ...prevData,
@@ -37,7 +36,7 @@ const Contact = () => {
       subject: "",
       message: "",
     });
-    emailjs.sendForm(`service_cj2j0mb`, "template_jwdqw3g", e.target, "GrywLkh4ZTz5WnZIn")
+    emailjs.sendForm(API.SERVICE_ID,API.TEMPLATE_ID, e.target, API.USER_ID)
 .then((result) => {
 setStatus("Message Sent, We will get back to you shortly");
 

@@ -10,7 +10,6 @@ const About = () => {
     <section className={`about-section ${isDarkMode ? 'dark-mode' : ''}`}>
       <div className="about-content">
         <div className="section-header fade-in">
-          <span className="section-number">01</span>
           <h2 className="section-title">About Me</h2>
         </div>
 
