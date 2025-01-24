@@ -236,14 +236,57 @@ body {
 
 /* Hero section updates */
 .hero-section {
-  background-color: #000000;
-  color: #ffffff;
   min-height: 100vh;
-  padding-top: 200px;
   display: flex;
   align-items: center;
-  position: relative;
+  justify-content: center;
+  padding: 80px 2rem;
+}
+
+.hero-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 4rem;
+  max-width: 1200px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.hero-image {
+  flex: 1;
+  max-width: 500px;
+}
+
+.profile-image {
+  width: 100%;
+  height: 100%;
+  border-radius: 12px;
   overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+.profile-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.profile-image:hover img {
+  transform: scale(1.05);
+}
+
+@media (max-width: 968px) {
+  .hero-content {
+    flex-direction: column;
+    text-align: center;
+    gap: 2rem;
+  }
+
+  .hero-image {
+    max-width: 300px;
+  }
 }
 
 /* Add this new style for the background pattern */
@@ -257,8 +300,8 @@ body {
   background-image: 
     radial-gradient(
       circle,
-      var(--dot-pattern) 2px,
-      transparent 2px
+      var(--dot-pattern) 1px,
+      transparent 1px
     );
   background-size: 30px 30px;
   opacity: 0.1;
@@ -598,11 +641,12 @@ body {
   }
 }
 
-/* Social Links Styles */
-.social-links {
+/* Enhanced Social Links Styles */
+.social-links-home {
   display: flex;
-  gap: 2rem;
-  margin-top: 2.5rem;
+  gap: 2.5rem;
+  margin-top: 3rem;
+  padding: 1rem 0;
 }
 
 .social-link {
@@ -611,14 +655,79 @@ body {
   gap: 0.8rem;
   color: #ffffff;
   text-decoration: none;
-  font-size: 1.8rem;
-  padding: 0.8rem;
+  font-size: 2rem;
+  padding: 1rem;
   border-radius: 50%;
-  transition: all 0.3s ease;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   position: relative;
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  overflow: hidden;
 }
 
+/* Enhanced hover effects */
+.social-link::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  background: radial-gradient(circle, rgba(255,255,255,0.2) 0%, transparent 70%);
+  transform: translate(-50%, -50%);
+  transition: width 0.4s ease, height 0.4s ease;
+  border-radius: 50%;
+}
+
+.social-link:hover::before {
+  width: 150%;
+  height: 150%;
+}
+
+.social-link::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 2px solid transparent;
+  background: linear-gradient(45deg, rgba(255,255,255,0.1), rgba(255,255,255,0.3)) border-box;
+  -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+  mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: destination-out;
+  mask-composite: exclude;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.social-link:hover::after {
+  opacity: 1;
+}
+
+.social-link:hover {
+  transform: translateY(-8px) scale(1.1);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+}
+
+/* Specific social media animations */
+.social-link.linkedin {
+  animation: float 3s ease-in-out infinite;
+}
+
+.social-link.github {
+  animation: float 3s ease-in-out infinite;
+  animation-delay: 0.5s;
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+/* Label animation */
 .social-label {
   font-size: 0.9rem;
   opacity: 0;
@@ -629,61 +738,41 @@ body {
   white-space: nowrap;
   transition: all 0.3s ease;
   background: rgba(255, 255, 255, 0.1);
-  padding: 0.3rem 0.8rem;
+  padding: 0.5rem 1rem;
   border-radius: 4px;
+  backdrop-filter: blur(5px);
   pointer-events: none;
 }
 
 .social-link:hover .social-label {
   opacity: 1;
-  top: -35px;
-}
-
-.social-link:hover {
-  transform: translateY(-5px);
+  top: -40px;
 }
 
 /* Specific social media colors on hover */
 .social-link.linkedin:hover {
   background: #0077b5;
+  border-color: #0077b5;
   box-shadow: 0 0 20px rgba(0, 119, 181, 0.3);
 }
 
 .social-link.github:hover {
   background: #333;
+  border-color: #333;
   box-shadow: 0 0 20px rgba(51, 51, 51, 0.3);
-}
-
-.social-link.instagram:hover {
-  background: #e4405f;
-  box-shadow: 0 0 20px rgba(228, 64, 95, 0.3);
-}
-
-/* Dark mode adjustments */
-.dark-mode .social-link {
-  color: #000000;
-  background: rgba(0, 0, 0, 0.1);
-}
-
-.dark-mode .social-label {
-  background: rgba(0, 0, 0, 0.1);
-  color: #000000;
 }
 
 /* Responsive adjustments */
 @media (max-width: 768px) {
-  .social-links {
-    gap: 1.5rem;
+  .social-links-home {
+    gap: 2rem;
     margin-top: 2rem;
+    justify-content: center;
   }
 
   .social-link {
-    font-size: 1.5rem;
-    padding: 0.6rem;
-  }
-
-  .social-label {
-    display: none;
+    font-size: 1.8rem;
+    padding: 0.8rem;
   }
 }
 
@@ -827,15 +916,38 @@ body {
 
 .about-section {
   min-height: 100vh;
-  padding: 4rem 4rem;
+  padding: 6rem 4rem;
   background: #000000;
   color: #ffffff;
   position: relative;
+  overflow: hidden;
 }
 
 .about-content {
   max-width: 1200px;
   margin: 0 auto;
+  position: relative;
+}
+
+/* Add decorative elements */
+.about-content::before {
+  content: '<about>';
+  position: absolute;
+  top: -2rem;
+  left: 0;
+  font-family: 'Courier New', monospace;
+  color: rgba(255, 255, 255, 0.1);
+  font-size: 1.2rem;
+}
+
+.about-content::after {
+  content: '</about>';
+  position: absolute;
+  bottom: -2rem;
+  right: 0;
+  font-family: 'Courier New', monospace;
+  color: rgba(255, 255, 255, 0.1);
+  font-size: 1.2rem;
 }
 
 .about-grid {
@@ -1007,7 +1119,7 @@ body {
 /* Responsive styles */
 @media (max-width: 768px) {
   .about-section {
-    padding: 3rem 2rem;
+    padding: 4rem 2rem;
   }
 
   .lead-text {
@@ -1021,7 +1133,8 @@ body {
   .skill-box {
     padding: 2rem;
   }
-} 
+}
+
 /* Add these styles to your home.css */
 .contact-section {
     min-height: 100vh;
@@ -1210,51 +1323,63 @@ body {
 .skills-slider {
   width: 100%;
   overflow: hidden;
-  padding: 1rem 0;
+  padding: 2rem 0;
   position: relative;
-  background: transparent;
+  background: linear-gradient(
+    to right,
+    transparent,
+    rgba(255, 255, 255, 0.05) 20%,
+    rgba(255, 255, 255, 0.05) 80%,
+    transparent
+  );
+  border-radius: 20px;
 }
 
 .skills-track {
   display: flex;
   animation: slide 30s linear infinite;
-  width: max-content;
+  width: fit-content;
 }
 
 .skill-icon-box {
   background: rgba(255, 255, 255, 0.05);
   border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 12px;
-  padding: 1rem;
+  border-radius: 16px;
+  padding: 1.5rem;
   margin: 0 1rem;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.5rem;
-  transition: all 0.3s ease;
-  min-width: 80px;
+  min-width: 120px;
+  transform: translateY(0);
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
 .skill-icon-box:hover {
-  transform: translateY(-5px);
+  transform: translateY(-10px) scale(1.05);
   background: rgba(255, 255, 255, 0.1);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
 }
 
 .skill-icon-wrapper {
-  font-size: 1.8rem;
-  color: var(--skill-color);
+  font-size: 2.2rem;
+  margin-bottom: 0.5rem;
   transition: transform 0.3s ease;
+  animation: glow 3s ease-in-out infinite;
 }
 
 .skill-icon-box:hover .skill-icon-wrapper {
-  transform: scale(1.1);
+  transform: scale(1.2) rotate(360deg);
 }
 
 .skill-name {
-  font-size: 0.8rem;
+  font-size: 0.9rem;
   font-weight: 500;
   color: #ffffff;
+  opacity: 0.8;
+  transition: opacity 0.3s ease;
   text-align: center;
+}
+
+.skill-icon-box:hover .skill-name {
+  opacity: 1;
 }
 
 @keyframes slide {
@@ -1264,25 +1389,6 @@ body {
   100% {
     transform: translateX(-50%);
   }
-}
-
-/* Dark mode adjustments */
-.dark-mode .skill-icon-box {
-  background: rgba(0, 0, 0, 0.05);
-  border-color: rgba(0, 0, 0, 0.1);
-}
-
-.dark-mode .skill-icon-box:hover {
-  background: rgba(0, 0, 0, 0.1);
-}
-
-.dark-mode .skill-name {
-  color: #000000;
-}
-
-/* Pause animation on hover */
-.skills-slider:hover .skills-track {
-  animation-play-state: paused;
 }
 
 /* Add gradient overlay for smooth edges */
@@ -1307,47 +1413,47 @@ body {
   background: linear-gradient(to left, #000000, transparent);
 }
 
-.dark-mode .skills-slider::before {
-  background: linear-gradient(to right, #ffffff, transparent);
+/* Pause animation on hover */
+.skills-slider:hover .skills-track {
+  animation-play-state: paused;
 }
 
-.dark-mode .skills-slider::after {
-  background: linear-gradient(to left, #ffffff, transparent);
+@keyframes glow {
+  0%, 100% {
+    filter: drop-shadow(0 0 2px rgba(255, 255, 255, 0.3));
+  }
+  50% {
+    filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.5));
+  }
 }
 
 /* Responsive adjustments */
 @media (max-width: 768px) {
+  .skills-slider {
+    margin: 2rem 0;
+  }
+
   .skill-icon-box {
-    min-width: 70px;
-    padding: 0.8rem;
+    padding: 1rem;
+    min-width: 100px;
   }
 
   .skill-icon-wrapper {
-    font-size: 1.5rem;
+    font-size: 1.8rem;
   }
 
   .skill-name {
-    font-size: 0.7rem;
-    color: #ffffff;
+    font-size: 0.8rem;
   }
 }
 
 /* Work section styles */
-.work-section::before {
+.work-section {
   min-height: 100vh;
   padding: 4rem 4rem;
   background: #000000;
   color: #ffffff;
   position: relative;
-  background-image: 
-  radial-gradient(
-    circle,
-    var(--dot-pattern) 2px,
-    transparent 2px
-  );
-background-size: 30px 30px;
-opacity: 0.1;
-z-index: 1;
 }
 
 .work-grid {
@@ -1494,4 +1600,41 @@ z-index: 1;
   .work-info h3 {
     font-size: 1.3rem;
   }
+}
+
+/* Remove or comment out this dot pattern from the about section */
+.about-section::before {
+  display: none; /* This removes the duplicate dot pattern */
+}
+
+/* Keep only the main dot pattern */
+.dot-pattern {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    radial-gradient(
+      var(--dot-color) 2px,
+      transparent 2px
+    );
+  background-size: 30px 30px;
+  opacity: 0.1;
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* Update work section to remove its dot pattern */
+.work-section::before {
+  background-image: none;
+}
+
+/* Ensure the content is above the dot pattern */
+.hero-section,
+.about-section,
+.work-section {
+  position: relative;
+  z-index: 1;
 }

@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { useTheme } from '../context/ThemeContext';
-import { FaBars, FaTimes, FaFileDownload } from 'react-icons/fa';
-import { PDFDownloadLink, Document, Page } from '@react-pdf/renderer'
-
+import { FaBars, FaTimes, FaFileAlt } from 'react-icons/fa';
 import '../styles/navbar.css';
 
 const Navbar = () => {
@@ -34,25 +32,38 @@ const Navbar = () => {
   }, []);
 
   const handleResumeDownload = () => {
-    // window.open('/nim.pdf', '_blank');
     const link = document.createElement("a");
-    link.href = "/resume.pdf"; // Path to your resume in the public folder
-    link.download = "resume.pdf"; // The name for the downloaded file
+    link.href = "/resume.pdf";
+    link.download = "resume.pdf";
     link.click();
   };
 
+  const handleNavigation = (item) => {
+    if (item.path) {
+      navigate(item.path);
+    } else if (location.pathname !== '/') {
+      navigate(`/?section=${item.id}`);
+    } else {
+      const element = document.getElementById(item.id);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+    setIsMenuOpen(false);
+  };
+
   const navItems = [
-    { name: 'Home', path: '/' },
+    { name: 'Home', id: 'home' },
     { name: 'About', path: '/about' },
-    { name: 'Skills', path: '/skills' },
-    { name: 'Contact', path: '/contact' }
+    { name: 'Works', id: 'recent-works' },
+    { name: 'Contact', id: 'contact' }
   ];
 
   return (
     <nav className={`navbar ${isDarkMode ? 'dark-mode' : ''}`}>
       <div className="navbar-content">
         <div className="nav-left">
-          <div className="logo">
+          <div className="logo" onClick={() => navigate('/')}>
             <span className="logo-text" aria-label="Nimmi Alampatta">NA</span>
           </div>
 
@@ -60,20 +71,18 @@ const Navbar = () => {
             {navItems.map((item, index) => (
               <div 
                 key={index}
-                className="nav-item"
-                style={{ animationDelay: `${index * 0.1}s` }}
+                className={`nav-item ${
+                  item.path 
+                    ? location.pathname === item.path ? 'active' : ''
+                    : activeSection === item.id ? 'active' : ''
+                }`}
               >
-                <a
-                  href={item.path}
-                  className={location.pathname === item.path ? 'active' : ''}
-                  onClick={(e) => {
-                    e.preventDefault();
-                    navigate(item.path);
-                    setIsMenuOpen(false);
-                  }}
+                <button
+                  className="nav-button"
+                  onClick={() => handleNavigation(item)}
                 >
                   {item.name}
-                </a>
+                </button>
               </div>
             ))}
           </div>
@@ -81,14 +90,12 @@ const Navbar = () => {
 
         <div className="nav-right">
           <button 
-            className="resume-btn"
+            className="resume-btn pulse-animation"
             onClick={handleResumeDownload}
             aria-label="Download Resume"
           >
             <span>Resume</span>
-            {/* <a href='/nim.pdf' download>Click to download</a> */}
-            <FaFileDownload />
-            
+            <FaFileAlt className="resume-icon" />
           </button>
 
           <button 

@@ -1,10 +1,23 @@
 import React from 'react';
 import { useTheme } from '../context/ThemeContext';
 import { FaChevronRight } from 'react-icons/fa';
+import { useNavigate } from 'react-router-dom';
 import '../styles/about.css';
 
 const About = () => {
   const { isDarkMode } = useTheme();
+  const navigate = useNavigate();
+
+  const handleConnect = () => {
+    navigate('/?section=contact');
+    // Add a small delay to ensure navigation completes before scrolling
+    setTimeout(() => {
+      const contactSection = document.getElementById('contact');
+      if (contactSection) {
+        contactSection.scrollIntoView({ behavior: 'smooth' });
+      }
+    }, 100);
+  };
 
   return (
     <section className={`about-section ${isDarkMode ? 'dark-mode' : ''}`}>
@@ -17,7 +30,7 @@ const About = () => {
           <div className="about-left fade-in">
             <div className="profile-container">
               <div className="profile-image">
-                <img src="/nimmi.png" alt="Nimmi" />
+                <img src="/nimmi-full.png" alt="Nimmi" />
                 <div className="image-frame"></div>
                 <div className="dot-pattern-small"></div>
               </div>
@@ -58,9 +71,12 @@ const About = () => {
               </div>
             </div>
 
-            <a href="#contact" className="connect-button">
+            <button 
+              onClick={handleConnect} 
+              className="connect-button"
+            >
               Let's Connect <FaChevronRight />
-            </a>
+            </button>
           </div>
         </div>
       </div>

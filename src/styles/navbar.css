@@ -4,12 +4,30 @@
   left: 0;
   width: 100%;
   height: 70px;
-  background: rgba(255, 255, 255, 0.1);
+  /* background: rgba(255, 255, 255, 0.1); */
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   z-index: 1000;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  /* border-bottom: 1px solid rgba(255, 255, 255, 0.1); */
   padding:40px
+}
+
+/* Add dot pattern to navbar */
+.navbar::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    radial-gradient(
+      var(--dot-color) 2px,
+      transparent 2px
+    );
+  background-size: 30px 30px;
+  opacity: 0.1;
+  z-index: -1;
 }
 
 .navbar-content {
@@ -25,7 +43,7 @@
 .nav-left {
   display: flex;
   align-items: center;
-  gap: 18rem;
+  gap: 8rem;
 }
 
 .nav-right {
@@ -35,101 +53,157 @@
 }
 
 .logo {
-  font-size: 1.5rem;
-  font-weight: 600;
+  cursor: pointer;
   position: relative;
+  overflow: hidden;
 }
 
 .logo-text {
   font-family: 'Blanka', sans-serif;
-  color: #f0ebeb;
+  font-size: 1.8rem;
+  color: var(--text-primary);
+  display: inline-block;
   position: relative;
+  transition: all 0.3s ease;
 }
 
-/* Add full name hover effect */
-.logo-text::before {
+.logo:hover .logo-text {
+  transform: translateY(-2px);
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+
+/* Logo hover effect with full name */
+.logo::after {
   content: 'Nimmi Alampatta';
-  font-family: "monterrat", sans-serif;
   position: absolute;
   top: 50%;
-  left: 0;
+  left: calc(100% + 1rem);
   transform: translateY(-50%);
+  font-family: 'Montserrat', sans-serif;
   font-size: 1rem;
   font-weight: 500;
-  white-space: nowrap;
+  color: var(--text-primary);
   opacity: 0;
-  pointer-events: none;
   transition: all 0.3s ease;
-  padding-left: 2rem;
+  white-space: nowrap;
 }
 
-.logo:hover .logo-text::before {
-  opacity: 1;
-  left: 100%;
+.logo:hover::after {
+  opacity: 0.8;
+  left: calc(100% + 0.5rem);
+}
+
+/* Add a subtle glow animation */
+@keyframes logoGlow {
+  0%, 100% {
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.3);
+  }
+  50% {
+    text-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
+  }
+}
+
+.logo-text {
+  animation: logoGlow 3s ease-in-out infinite;
+}
+
+/* Update nav buttons styling */
+.nav-button {
+  background: transparent;
+  border: none;
+  color: var(--text-primary);
+  font-size: 1rem;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  position: relative;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: 500;
+}
+
+.nav-button::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 50%;
+  width: 0;
+  height: 2px;
+  background: var(--accent-color);
+  transition: all 0.3s ease;
+  transform: translateX(-50%);
+}
+
+.nav-item:hover .nav-button::after,
+.nav-item.active .nav-button::after {
+  width: 100%;
 }
 
 .nav-links {
   display: flex;
-  gap: 2rem;
+  gap: 7rem;
   align-items: center;
 }
 
-.nav-item a {
-  color: #fdfdfd;
-  text-decoration: none;
-  font-size: 0.9rem;
-  font-weight: 500;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  transition: color 0.3s ease;
+.nav-item {
   position: relative;
 }
 
-.nav-item a::after {
+/* Add hover animation for nav items */
+.nav-item::before {
   content: '';
   position: absolute;
-  bottom: -4px;
-  left: 0;
-  width: 0;
-  height: 1px;
-  background: #ffffff;
-  transition: width 0.3s ease;
-}
-
-.nav-item a:hover::after,
-.nav-item a.active::after {
+  top: 0;
+  left: -100%;
   width: 100%;
-}
-
-.resume-btn {
-  padding: 0.5rem 1rem;
-  background: transparent;
-  color: #ffffff;
-  border: 1px solid #ffffff;
-  font-size: 0.8rem;
-  font-weight: 500;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  cursor: pointer;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.1);
   transition: all 0.3s ease;
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
+  z-index: -1;
   border-radius: 4px;
 }
 
-.resume-btn:hover {
-  background: #ffffff;
-  color: #000000;
+.nav-item:hover::before {
+  left: 0;
 }
 
-.resume-btn svg {
-  font-size: 1rem;
+.resume-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  background: var(--accent-color);
+  color: var(--bg-primary);
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-weight: 500;
+  letter-spacing: 1px;
+}
+
+.resume-icon {
   transition: transform 0.3s ease;
 }
 
-.resume-btn:hover svg {
+.resume-btn:hover .resume-icon {
   transform: translateY(-2px);
+}
+
+.pulse-animation {
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.4);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(255, 255, 255, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
+  }
 }
 
 .theme-toggle {
@@ -165,28 +239,27 @@
     display: block;
   }
 
+  .nav-left {
+    gap: 2rem;
+  }
+
   .nav-links {
     position: fixed;
-    top: 60px;
+    top: 70px;
     left: 0;
     width: 100%;
     background: rgba(0, 0, 0, 0.9);
-    padding: 1rem;
     flex-direction: column;
-    gap: 1rem;
+    padding: 2rem;
+    gap: 2rem;
     transform: translateY(-100%);
     opacity: 0;
-    pointer-events: none;
     transition: all 0.3s ease;
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
   }
 
   .nav-links.open {
     transform: translateY(0);
     opacity: 1;
-    pointer-events: all;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   }
 
   .nav-item {
@@ -199,10 +272,6 @@
     padding: 0.4rem 0;
   }
 
-  .nav-left {
-    gap: 0.8rem;
-  }
-  
   .nav-right {
     gap: 0.4rem;
   }

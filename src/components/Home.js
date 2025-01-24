@@ -1,19 +1,25 @@
 import React, { useEffect, useState } from 'react';
 import { useTheme } from '../context/ThemeContext';
-import { useNavigate } from 'react-router-dom';
+// import { useNavigate } from 'react-router-dom';
 import { 
   FaCode, FaServer, FaDatabase, FaPalette, FaChevronRight, 
   FaGithub, FaLinkedin, FaEnvelope, FaInstagram, FaReact, 
   FaNodeJs, FaJs, FaHtml5, FaCss3Alt, FaGitAlt, FaAws, FaVuejs 
 } from 'react-icons/fa';
 import { SiNuxtdotjs } from 'react-icons/si';
+import { motion } from 'framer-motion';
+import { useInView } from 'react-intersection-observer';
 import '../styles/home.css';
 
 const Home = () => {
   const { isDarkMode } = useTheme();
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   const [activeSection, setActiveSection] = useState('hero');
   const [isLoaded, setIsLoaded] = useState(false);
+  const [ref, inView] = useInView({
+    triggerOnce: true,
+    threshold: 0.1
+  });
 
   useEffect(() => {
     setIsLoaded(true);
@@ -36,6 +42,11 @@ const Home = () => {
 
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  useEffect(() => {
+    // Scroll to top on component mount
+    // window.scrollTo(0, 0);
   }, []);
 
   const scrollToSection = (sectionId) => {
@@ -82,14 +93,44 @@ const Home = () => {
     { name: "AWS", icon: <FaAws />, color: "#FF9900" },
   ];
 
+  const socialLinks = [
+    {
+      name: 'LinkedIn',
+      icon: <FaLinkedin />,
+      url: 'https://linkedin.com/in/nimmi-alampatta',
+      label: 'Connect with me'
+    },
+    {
+      name: 'GitHub',
+      icon: <FaGithub />,
+      url: 'https://github.com/nimmialampatt',
+      label: 'Check out my code'
+    },
+    {
+      name: 'Email',
+      icon: <FaEnvelope />,
+      url: 'mailto:nimmialampatta@gmail.com',
+      label: 'Send me an email'
+    }
+  ];
+
   return (
     <section className={`home-section ${isDarkMode ? 'dark-mode' : ''} ${isLoaded ? 'loaded' : ''}`}>
-  
-
       <div className="home-container">
-        <div id="hero" className="hero-section">
-          <div className="content-wrapper">
-            <div className="text-content">
+        <div className="dot-pattern"></div>
+        <motion.div 
+          className="hero-section"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.8 }}
+        >
+          <div className="hero-content">
+            <motion.div 
+              className="hero-text"
+              initial={{ opacity: 0, x: -50 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: 0.2, duration: 0.8 }}
+            >
               <div className="title-container">
                 <h1 className="main-title highlight animate-title">
                   {['N', 'I', 'M', 'M', 'I',' '].map((letter, index) => (
@@ -104,9 +145,9 @@ const Home = () => {
                 <div className="hero-description fade-in">
                   Crafting beautiful and functional web experiences
                 </div>
-                <div className="social-links fade-in">
+                <div className="social-links-home fade-in">
                   <a 
-                    href="https://linkedin.com/in/nimmialampatta" 
+                    href="https://linkedin.com/in/nimmi-alampatta" 
                     target="_blank" 
                     rel="noopener noreferrer" 
                     className="social-link linkedin"
@@ -116,7 +157,7 @@ const Home = () => {
                     <span className="social-label">LinkedIn</span>
                   </a>
                   <a 
-                    href="https://github.com/NimmiA" 
+                    href="https://github.com/nimmialampatt" 
                     target="_blank" 
                     rel="noopener noreferrer" 
                     className="social-link github"
@@ -125,29 +166,22 @@ const Home = () => {
                     <FaGithub />
                     <span className="social-label">GitHub</span>
                   </a>
-                  {/* <a 
-                    href="https://instagram.com/your-profile" 
-                    target="_blank" 
-                    rel="noopener noreferrer" 
-                    className="social-link instagram"
-                    aria-label="Instagram Profile"
-                  >
-                    <FaInstagram />
-                    <span className="social-label">Instagram</span>
-                  </a> */}
                 </div>
               </div>
-            </div>
-            <div className="image-container float-in">
-              <div className="image-wrapper">
-                <div className="profile-image">
-                  <img src="/nimmi.png" alt="Nimmi" className="morph-animation" />
-                </div>
-                <div className="dot-pattern animate-pattern"></div>
+            </motion.div>
+
+            <motion.div 
+              className="hero-image"
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ delay: 0.4, duration: 0.8 }}
+            >
+              <div className="profile-image">
+                <img src="/nimmi.png" alt="Nimmi" className="morph-animation" />
               </div>
-            </div>
+            </motion.div>
           </div>
-        </div>
+        </motion.div>
 
         <div id="about" className="about-section">
           <div className="section-header fade-in">
@@ -160,50 +194,25 @@ const Home = () => {
                   <div 
                     key={index}
                     className="skill-icon-box"
-                    style={{ '--skill-color': skill.color}}
+                    style={{ '--skill-color': skill.color }}
                   >
                     <div className="skill-icon-wrapper">
                       {skill.icon}
                     </div>
-                    <span className="skill-name-color">{skill.name}</span>
+                    <span className="skill-name">{skill.name}</span>
                   </div>
                 ))}
               </div>
             </div>
-            <div className="view-more fade-in">
+            {/* <div className="view-more fade-in">
               <button onClick={() => navigate('/skills')} className="view-more-btn">
                 View All Skills <FaChevronRight />
               </button>
-            </div>
+            </div> */}
           </div>
         </div>
 
-        <div id="work" className="work-section">
-          <div className="section-header">
-            <span className="section-number">02</span>
-            <h2 className="section-title">MY WORK</h2>
-          </div>
-          <div className="work-grid">
-            {projects.map((project, index) => (
-              <div key={index} className="work-card">
-                <div className="work-image">
-                  <img src={project.image} alt={project.title} />
-                </div>
-                <div className="work-info">
-                  <h3>{project.title}</h3>
-                  <p>{project.description}</p>
-                  <div className="project-tags">
-                    {project.tags.map((tag, tagIndex) => (
-                      <span key={tagIndex} className="project-tag">{tag}</span>
-                    ))}
-                  </div>
-                  <a href={project.link} className="view-project-btn">View Project</a>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-
+{/* 
         <div id="contact" className="contact-section">
           <div className="section-number">03</div>
           <h2 className="contact-title">GET IN TOUCH</h2>
@@ -230,16 +239,16 @@ const Home = () => {
               </div>
             </div>
 
-            <div className="contact-form">
+            {/* <div className="contact-form">
               <input type="text" placeholder="Your Name" className="form-input" />
               <input type="email" placeholder="Your Email" className="form-input" />
               <textarea placeholder="Your Message" className="form-input" rows="4"></textarea>
               <button type="submit" className="send-btn">
                 Send Message
               </button>
-            </div>
-          </div>
-        </div>
+            </div> */}
+          {/* </div> */}
+        {/* </div>  */}
       </div>
     </section>
   );
