@@ -69,6 +69,7 @@ const Navbar = () => {
 
           <div className={`nav-links ${isMenuOpen ? 'open' : ''}`}>
             {navItems.map((item, index) => (
+            
               <div 
                 key={index}
                 className={`nav-item ${

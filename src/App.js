@@ -9,6 +9,8 @@ import './App.css';
 import Footer from './components/Footer';
 import './styles/animations.css';
 import RecentWorks from './components/RecentWorks';
+import emailjs from '@emailjs/browser';
+import apiKY from './utils/emailkey';
 
 // Create a component to handle scrolling
 const ScrollHandler = () => {
@@ -31,6 +33,10 @@ const ScrollHandler = () => {
 };
 
 function App() {
+  useEffect(() => {
+    emailjs.init(apiKY.PUBLIC_KEY);
+  }, []);
+
   return (
     <ThemeProvider>
       <Router>

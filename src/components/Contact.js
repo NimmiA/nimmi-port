@@ -1,26 +1,88 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
+import emailjs from '@emailjs/browser';
+import apiKY from "../utils/emailkey.js"
 import { useInView } from 'react-intersection-observer';
 import { FaBuilding, FaEnvelope, FaLinkedin, FaGithub } from 'react-icons/fa';
 import '../styles/contact.css';
+import styled from 'styled-components';
+
+const ContactContainer = styled.div`
+  padding: 2rem;
+  max-width: 800px;
+  margin: 0 auto;
+
+  @media (max-width: 768px) {
+    padding: 1rem;
+  }
+`;
+
+const ContactForm = styled.form`
+  display: grid;
+  gap: 1.5rem;
+  
+  @media (max-width: 768px) {
+    gap: 1rem;
+  }
+`;
+
+const Input = styled.input`
+  padding: 0.8rem;
+  width: 100%;
+  
+  @media (max-width: 768px) {
+    padding: 0.6rem;
+  }
+`;
+
+const TextArea = styled.textarea`
+  padding: 0.8rem;
+  width: 100%;
+  min-height: 150px;
+  
+  @media (max-width: 768px) {
+    min-height: 120px;
+  }
+`;
 
 const Contact = () => {
   const [email, setEmail] = useState('');
   const [message, setMessage] = useState('');
   const [submitted, setSubmitted] = useState(false);
+  const [name, setName] = useState('');
 
   const [ref, inView] = useInView({
     triggerOnce: true,
     threshold: 0.1
   });
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async(e) => {
     e.preventDefault();
-    // Here you can add your email sending logic
-    window.location.href = `mailto:nimmialampatta@gmail.com?subject=Portfolio Contact&body=From: ${email}%0D%0A%0D%0A${message}`;
-    setSubmitted(true);
-    setEmail('');
-    setMessage('');
+    
+    try {
+      const templateParams = {
+        from_name: name,
+        from_email: email,
+        message: message,
+      };
+      console.log(apiKY,templateParams)
+
+      await emailjs.send(
+        apiKY.SERVICE_ID, 
+        apiKY.TEMPLATE_ID,
+        templateParams,
+        apiKY.USER_ID
+      );
+      
+      alert('Email sent successfully!');
+      setSubmitted(true);
+      setEmail('');
+      setMessage('');
+      setName('');
+    } catch (error) {
+      console.error('Error sending email:', error);
+      alert('Failed to send email. Please try again.');
+    }
   };
 
   const workHistory = [
@@ -55,14 +117,14 @@ const Contact = () => {
     {
       name: 'LinkedIn',
       icon: <FaLinkedin />,
-      url: 'https://linkedin.com/in/nimmi-alampatta',
+      url: 'https://linkedin.com/in/nimmialampatta',
       title: 'LinkedIn',
       description: 'Connect with me'
     },
     {
       name: 'GitHub',
       icon: <FaGithub />,
-      url: 'https://github.com/nimmialampatt',
+      url: 'https://github.com/nimmia',
       title: 'GitHub',
       description: 'Check out my code'
     }
@@ -126,7 +188,7 @@ const Contact = () => {
                   </div>
                 </a>
                 
-                <a href="https://github.com/nimmialampatt" target="_blank" rel="noopener noreferrer" className="contact-item">
+                <a href="https://github.com/nimmia" target="_blank" rel="noopener noreferrer" className="contact-item">
                   <FaGithub className="icon" />
                   <div>
                     <h4>GitHub</h4>
@@ -136,6 +198,17 @@ const Contact = () => {
               </div>
 
               <form onSubmit={handleSubmit} className="contact-form">
+                <div className="form-group">
+                  <label htmlFor="name">Your Name</label>
+                  <input
+                    type="text"
+                    id="name"
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
+                    placeholder="Enter your name"
+                    required
+                  />
+                </div>
                 <div className="form-group">
                   <label htmlFor="email">Your Email</label>
                   <input
@@ -148,13 +221,14 @@ const Contact = () => {
                   />
                 </div>
                 <div className="form-group">
-                  <label htmlFor="message">Message (Optional)</label>
+                  <label htmlFor="message">Message</label>
                   <textarea
                     id="message"
                     value={message}
                     onChange={(e) => setMessage(e.target.value)}
                     placeholder="Your message here..."
                     rows="4"
+                    required
                   />
                 </div>
                 <button type="submit" className="submit-btn pulse">

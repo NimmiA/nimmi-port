@@ -6,36 +6,36 @@ import '../styles/recentWorks.css';
 
 const works = [
   {
-    title: "Japan Airlines Loyalty Program",
-    description: "Integrated loyalty points feature increasing user engagement by 35%. Implemented comprehensive reward tracking and redemption system.",
-    imageUrl: "/images/project1.jpg",
-    tech: ["React", "Redux", "Node.js"],
-    period: "2022-2023",
+    title: "Vision Board Creator",
+    description: "An interactive web application that allows users to create and customize their personal vision boards. Features include drag-and-drop functionality, multiple layout options, and the ability to download or share created vision boards.",
+    imageUrl: "/vision-board.png",
+    tech: ["React", "Framer Motion", "Styled Components"],
+    period: "2024",
     links: {
-      live: "https://www.jal.com",
-      github: "https://github.com/yourusername/jal-loyalty"
+      live: "https://vision-board-creator.com",
+      github: "https://github.com/nimmia/vision-board"
     }
   },
   {
-    title: "SKYPAK TOURS Booking Platform",
-    description: "Developed tour booking website enhancing efficiency by 50%. Built with modern web technologies for optimal performance.",
-    imageUrl: "/images/project2.jpg",
-    tech: ["Vue.js", "Express", "MongoDB"],
-    period: "2022",
+    title: "Personal Portfolio",
+    description: "A modern, responsive portfolio website showcasing my work and skills. Features dark mode support, smooth animations, and an intuitive user interface that works seamlessly across all devices.",
+    imageUrl: "/portfolio.png",
+    tech: ["React", "Styled Components", "Framer Motion"],
+    period: "2024",
     links: {
-      live: "https://skypak.com",
-      github: "https://github.com/yourusername/skypak-tours"
+      live: "https://nimmi-alampatta.com",
+      github: "https://github.com/nimmialampatt/portfolio"
     }
   },
   {
-    title: "IKONICK E-commerce Platform",
-    description: "Created headless e-commerce site boosting sales by 20%. Implemented seamless shopping experience with modern UI/UX.",
-    imageUrl: "/images/project3.jpg",
-    tech: ["React", "Shopify", "GraphQL"],
-    period: "2021",
+    title: "Resume Keyword Scanner",
+    description: "A tool that helps job seekers optimize their resumes by analyzing keyword matches between their resume and job descriptions. Features include PDF parsing, keyword highlighting, and match percentage calculation.",
+    imageUrl: "/resume-scanner.png",
+    tech: ["React", "Node.js", "Natural Language Processing"],
+    period: "2024",
     links: {
-      live: "https://ikonick.com",
-      github: "https://github.com/yourusername/ikonick-ecommerce"
+      live: "https://resume-keyword-scanner.com",
+      github: "https://github.com/yourusername/resume-scanner"
     }
   }
 ];
@@ -59,17 +59,20 @@ const RecentWorks = () => {
   const slideVariants = {
     enter: (direction) => ({
       x: direction > 0 ? 1000 : -1000,
-      opacity: 0
+      opacity: 0,
+      scale: 0.8
     }),
     center: {
       zIndex: 1,
       x: 0,
-      opacity: 1
+      opacity: 1,
+      scale: 1
     },
     exit: (direction) => ({
       zIndex: 0,
       x: direction < 0 ? 1000 : -1000,
-      opacity: 0
+      opacity: 0,
+      scale: 0.8
     })
   };
 
@@ -107,7 +110,8 @@ const RecentWorks = () => {
               exit="exit"
               transition={{
                 x: { type: "spring", stiffness: 300, damping: 30 },
-                opacity: { duration: 0.2 }
+                opacity: { duration: 0.2 },
+                scale: { duration: 0.3 }
               }}
               drag="x"
               dragConstraints={{ left: 0, right: 0 }}
@@ -139,7 +143,7 @@ const RecentWorks = () => {
                   </div>
                   <div className="project-links">
                     <a href={works[currentIndex].links.github} target="_blank" rel="noopener noreferrer">
-                      <FaGithub /> Code
+                      <FaGithub /> View Code
                     </a>
                     <a href={works[currentIndex].links.live} target="_blank" rel="noopener noreferrer">
                       <FaExternalLinkAlt /> Live Demo
