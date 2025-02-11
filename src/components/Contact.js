@@ -180,7 +180,7 @@ const Contact = () => {
                   </div>
                 </a>
                 
-                <a href="https://linkedin.com/in/nimmi-alampatta" target="_blank" rel="noopener noreferrer" className="contact-item">
+                <a href="https://linkedin.com/in/nimmialampatta" target="_blank" rel="noopener noreferrer" className="contact-item">
                   <FaLinkedin className="icon" />
                   <div>
                     <h4>LinkedIn</h4>

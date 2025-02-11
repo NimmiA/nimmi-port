@@ -97,13 +97,13 @@ const Home = () => {
     {
       name: 'LinkedIn',
       icon: <FaLinkedin />,
-      url: 'https://linkedin.com/in/nimmi-alampatta',
+      url: 'https://linkedin.com/in/nimmialampatta',
       label: 'Connect with me'
     },
     {
       name: 'GitHub',
       icon: <FaGithub />,
-      url: 'https://github.com/nimmialampatt',
+      url: 'https://github.com/nimmia',
       label: 'Check out my code'
     },
     {
@@ -157,7 +157,7 @@ const Home = () => {
                     <span className="social-label">LinkedIn</span>
                   </a>
                   <a 
-                    href="https://github.com/nimmialampatt" 
+                    href="https://github.com/nimmia" 
                     target="_blank" 
                     rel="noopener noreferrer" 
                     className="social-link github"

@@ -23,8 +23,8 @@ const works = [
     tech: ["React", "Styled Components", "Framer Motion"],
     period: "2024",
     links: {
-      live: "https://nimmi-alampatta.com",
-      github: "https://github.com/nimmialampatt/portfolio"
+      live: "https://nimmialampatta.com",
+      github: "https://github.com/nimmia/portfolio"
     }
   },
   {
