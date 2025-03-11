@@ -251,6 +251,8 @@ body {
   max-width: 1200px;
   width: 100%;
   margin: 0 auto;
+  position: relative;
+  z-index: 2;
 }
 
 .hero-image {
@@ -306,6 +308,7 @@ body {
   background-size: 30px 30px;
   opacity: 0.1;
   z-index: 1;
+  pointer-events: none;
 }
 
 /* Update content wrapper to stay above the pattern */
@@ -375,6 +378,7 @@ body {
   background-image: radial-gradient(var(--dot-pattern) 2px, transparent 2px);
   background-size: 15px 15px;
   z-index: 1;
+  pointer-events: none;
 }
 
 /* Section styles update */
@@ -647,6 +651,8 @@ body {
   gap: 2.5rem;
   margin-top: 3rem;
   padding: 1rem 0;
+  position: relative;
+  z-index: 100;
 }
 
 .social-link {
@@ -663,20 +669,14 @@ body {
   background: rgba(255, 255, 255, 0.05);
   border: 1px solid rgba(255, 255, 255, 0.1);
   overflow: hidden;
+  cursor: pointer;
+  z-index: 101;
 }
 
 /* Enhanced hover effects */
-.social-link::before {
-  content: '';
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 0;
-  height: 0;
-  background: radial-gradient(circle, rgba(255,255,255,0.2) 0%, transparent 70%);
-  transform: translate(-50%, -50%);
-  transition: width 0.4s ease, height 0.4s ease;
-  border-radius: 50%;
+.social-link::before,
+.social-link::after {
+  pointer-events: none;
 }
 
 .social-link:hover::before {
@@ -931,7 +931,7 @@ body {
 
 /* Add decorative elements */
 .about-content::before {
-  content: '<about>';
+  /* content: '<about>'; */
   position: absolute;
   top: -2rem;
   left: 0;
@@ -941,7 +941,7 @@ body {
 }
 
 .about-content::after {
-  content: '</about>';
+  /* content: '</about>'; */
   position: absolute;
   bottom: -2rem;
   right: 0;

@@ -133,10 +133,10 @@ const Home = () => {
             >
               <div className="title-container">
                 <h1 className="main-title highlight animate-title">
-                  {['N', 'I', 'M', 'M', 'I',' '].map((letter, index) => (
+                  {['N', 'I', 'M', 'M', 'I','  '].map((letter, index) => (
                     <span key={index} style={{ animationDelay: `${index * 0.1}s` }}>{letter}</span>
                   ))}
-                    {['A','L','A','M','P','A','T','T','A'].map((letter, index) => (
+                    {['','A','L','A','M','P','A','T','T','A'].map((letter, index) => (
                     <span key={index} style={{ animationDelay: `${index * 0.1}s` }}>{letter}</span>
                   ))}
                 </h1>
@@ -147,7 +147,7 @@ const Home = () => {
                 </div>
                 <div className="social-links-home fade-in">
                   <a 
-                    href="https://linkedin.com/in/nimmi-alampatta" 
+                    href="https://www.linkedin.com/in/nimmialampatta/" 
                     target="_blank" 
                     rel="noopener noreferrer" 
                     className="social-link linkedin"
@@ -185,7 +185,7 @@ const Home = () => {
 
         <div id="about" className="about-section">
           <div className="section-header fade-in">
-            <span className="section-number">01</span>
+            {/* <span className="section-number">01</span> */}
           </div>
           <div className="about-content">
             <div className="skills-slider">

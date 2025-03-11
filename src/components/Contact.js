@@ -117,7 +117,7 @@ const Contact = () => {
     {
       name: 'LinkedIn',
       icon: <FaLinkedin />,
-      url: 'https://linkedin.com/in/nimmialampatta',
+      url: 'https://www.linkedin.com/in/nimmialampatta/',
       title: 'LinkedIn',
       description: 'Connect with me'
     },
@@ -140,7 +140,7 @@ const Contact = () => {
         animate={inView ? { opacity: 1, y: 0 } : {}}
         transition={{ duration: 0.6 }}
       >
-        
+{/*         
         <div className="work-history">
           <h3>Work Experience</h3>
           {workHistory.map((job, index) => (
@@ -160,7 +160,7 @@ const Contact = () => {
               </div>
             </motion.div>
           ))}
-        </div>
+        </div> */}
 
         <div className="contact-content">
           <div className="connect-section">
@@ -180,7 +180,7 @@ const Contact = () => {
                   </div>
                 </a>
                 
-                <a href="https://linkedin.com/in/nimmialampatta" target="_blank" rel="noopener noreferrer" className="contact-item">
+                <a href="https://www.linkedin.com/in/nimmialampatta/" target="_blank" rel="noopener noreferrer" className="contact-item">
                   <FaLinkedin className="icon" />
                   <div>
                     <h4>LinkedIn</h4>

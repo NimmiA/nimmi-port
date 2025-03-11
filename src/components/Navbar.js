@@ -1,55 +1,37 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate, useLocation } from 'react-router-dom';
+import { Link, useLocation,useNavigate } from 'react-router-dom';
+import { FaSun, FaMoon, FaBars, FaTimes, FaFileAlt } from 'react-icons/fa';
 import { useTheme } from '../context/ThemeContext';
-import { FaBars, FaTimes, FaFileAlt } from 'react-icons/fa';
 import '../styles/navbar.css';
 
 const Navbar = () => {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [activeSection, setActiveSection] = useState('');
-  const { isDarkMode } = useTheme();
-  const navigate = useNavigate();
+  const { isDarkMode, toggleTheme } = useTheme();
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const location = useLocation();
-
-  const handleScroll = () => {
-    const sections = document.querySelectorAll('section');
-    const scrollPosition = window.scrollY + 100;
-
-    sections.forEach(section => {
-      const top = section.offsetTop;
-      const height = section.offsetHeight;
-      const id = section.getAttribute('id');
-
-      if (scrollPosition >= top && scrollPosition < top + height) {
-        setActiveSection(id);
-      }
-    });
-  };
-
+  const navigate = useNavigate();
   useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 50);
+    };
+
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  const scrollToSection = (sectionId) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+      setIsMobileMenuOpen(false); // Close mobile menu after clicking
+    }
+  };
 
   const handleResumeDownload = () => {
     const link = document.createElement("a");
     link.href = "/resume.pdf";
     link.download = "resume.pdf";
     link.click();
-  };
-
-  const handleNavigation = (item) => {
-    if (item.path) {
-      navigate(item.path);
-    } else if (location.pathname !== '/') {
-      navigate(`/?section=${item.id}`);
-    } else {
-      const element = document.getElementById(item.id);
-      if (element) {
-        element.scrollIntoView({ behavior: 'smooth' });
-      }
-    }
-    setIsMenuOpen(false);
   };
 
   const navItems = [
@@ -60,36 +42,14 @@ const Navbar = () => {
   ];
 
   return (
-    <nav className={`navbar ${isDarkMode ? 'dark-mode' : ''}`}>
-      <div className="navbar-content">
-        <div className="nav-left">
-          <div className="logo" onClick={() => navigate('/')}>
+    <nav className={`navbar ${isScrolled ? 'scrolled' : ''} ${isMobileMenuOpen ? 'mobile-open' : ''}`}>
+      <div className="navbar-container">
+      <div className="logo" onClick={() => navigate('/')}>
             <span className="logo-text" aria-label="Nimmi Alampatta">NA</span>
           </div>
 
-          <div className={`nav-links ${isMenuOpen ? 'open' : ''}`}>
-            {navItems.map((item, index) => (
-            
-              <div 
-                key={index}
-                className={`nav-item ${
-                  item.path 
-                    ? location.pathname === item.path ? 'active' : ''
-                    : activeSection === item.id ? 'active' : ''
-                }`}
-              >
-                <button
-                  className="nav-button"
-                  onClick={() => handleNavigation(item)}
-                >
-                  {item.name}
-                </button>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        <div className="nav-right">
+        {/* Resume button between logo and menu */}
+        <div className="nav-right desktop-only">
           <button 
             className="resume-btn pulse-animation"
             onClick={handleResumeDownload}
@@ -98,14 +58,37 @@ const Navbar = () => {
             <span>Resume</span>
             <FaFileAlt className="resume-icon" />
           </button>
+        </div>
 
-          <button 
-            className="menu-toggle"
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
-            aria-label="Toggle menu"
+        {/* Mobile Menu Button */}
+        <button 
+          className="mobile-menu-btn"
+          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+          aria-label="Toggle mobile menu"
+        >
+          {isMobileMenuOpen ? <FaTimes className="close-icon" /> : <FaBars />}
+        </button>
+
+        {/* Navigation Links */}
+        <div className={`nav-links ${isMobileMenuOpen ? 'show' : ''}`}>
+          {navItems.map((item, index) => (
+            <Link 
+              key={index}
+              to={item.path || `/?section=${item.id}`}
+              onClick={() => scrollToSection(item.id)}
+              className={`nav-item ${location.pathname === item.path ? 'active' : ''}`}
+            >
+              {item.name}
+            </Link>
+          ))}
+
+          {/* <button 
+            onClick={toggleTheme} 
+            className="theme-toggle"
+            aria-label="Toggle theme"
           >
-            {isMenuOpen ? <FaTimes /> : <FaBars />}
-          </button>
+            {isDarkMode ? <FaSun /> : <FaMoon />}
+          </button> */}
         </div>
       </div>
     </nav>
